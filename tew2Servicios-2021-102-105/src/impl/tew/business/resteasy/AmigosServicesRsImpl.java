@@ -17,6 +17,7 @@ public class AmigosServicesRsImpl implements AmigosServicesRs
 	{
 		try 
 		{
+			System.out.println("Lista ");
 			return new AmigosListaListado().getAmigosLista();
 		} 
 		
@@ -28,14 +29,17 @@ public class AmigosServicesRsImpl implements AmigosServicesRs
 	}
 
 	@Override
-	public Amigos find(Amigos a) throws EntityNotFoundException 
+	public Amigos find(String a, String b) throws EntityNotFoundException 
 	{
-		return new AmigosListaBuscar().find(a);
+		Amigos amigos = new Amigos(a,b,true);
+		System.out.println(a+" "+b);
+		return new AmigosListaBuscar().find(amigos);
 	}
 
 	@Override
-	public void deleteAmigos(Amigos amigos) throws EntityNotFoundException
+	public void deleteAmigos(String a, String b) throws EntityNotFoundException
 	{
+		Amigos amigos = new Amigos(a,b,true);
 		new AmigosListaBaja().delete(amigos);
 	}
 
@@ -55,6 +59,18 @@ public class AmigosServicesRsImpl implements AmigosServicesRs
 	public List<Amigos> getListadoPeticiones(String email) 
 	{
 		return new AmigosListaListado().getAmigosListaPeticiones(email);
+	}
+
+	@Override
+	public Amigos find(Amigos a) throws EntityNotFoundException {
+		
+		return null;
+	}
+
+	@Override
+	public void deleteAmigos(Amigos amigos) throws EntityNotFoundException {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

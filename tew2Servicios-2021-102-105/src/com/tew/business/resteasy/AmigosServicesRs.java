@@ -13,16 +13,18 @@ public interface AmigosServicesRs extends AmigosListaService
 	 @GET
 	 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	 public List<Amigos> getAmigosLista() throws Exception; 
-	 /*
+	 
 	 @GET
-	 @Path("{a}")
+	 @Path("{a}/{b}")
 	 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	 Amigos find(@PathParam("a") Amigos a) throws EntityNotFoundException;
+	 Amigos find(@PathParam("a") String a, @PathParam("b") String b) throws EntityNotFoundException;
+	 
 	 
 	 @DELETE
-	 @Path("{amigos}")
-	 void deleteAmigos(@PathParam("amigos") Amigos amigos) throws EntityNotFoundException;
-	 */
+	 @Path("{a}/{b}")
+	 void deleteAmigos(@PathParam("a") String a, @PathParam("b") String b) throws EntityNotFoundException;
+	 
+	 
 	 @PUT
 	 @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	 void saveAmigos(Amigos amigos) throws EntityAlreadyExistsException;
