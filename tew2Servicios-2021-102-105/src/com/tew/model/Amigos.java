@@ -1,34 +1,68 @@
 package com.tew.model;
+import javax.xml.bind.annotation.XmlRootElement;
 
-public class Amigos {
+import com.sun.xml.internal.txw2.annotation.XmlElement;
+
+@XmlRootElement(name = "amigos") 
+public class Amigos 
+{
 	private String email_usuario;
 	private String email_amigo;
 	private boolean aceptada;
 	
-	public String getEmail_usuario() {
+	public Amigos() 
+	{
+		
+	}
+	
+	public Amigos(String emailusu, String emailamig, boolean acept) 
+	{
+		 this.email_usuario = emailusu;
+		 this.email_amigo = emailamig;
+		 this.aceptada = acept;
+	}
+	
+	
+	@XmlElement
+	public String getEmail_usuario() 
+	{
 		return email_usuario;
 	}
-	public void setEmail_usuario(String email_usuario) {
+	
+	
+	public void setEmail_usuario(String email_usuario) 
+	{
 		this.email_usuario = email_usuario;
 	}
-	public String getEmail_amigo() {
+	
+	@XmlElement 
+	public String getEmail_amigo() 
+	{
 		return email_amigo;
 	}
-	public void setEmail_amigo(String email_amigo) {
+	
+ 
+	public void setEmail_amigo(String email_amigo) 
+	{
 		this.email_amigo = email_amigo;
 	}
-	public boolean isAceptada() {
+	
+	@XmlElement
+	public boolean isAceptada() 
+	{
 		return aceptada;
 	}
-	public void setAceptada(boolean aceptada) {
+	
+
+	public void setAceptada(boolean aceptada) 
+	{
 		this.aceptada = aceptada;
 	}
+	
 	@Override
-	public String toString() {
-		
+	public String toString() 
+	{
 		return ("Usuario:"+email_usuario+"Amigo: "+email_amigo);
 	}
 
-	
-	
 }
