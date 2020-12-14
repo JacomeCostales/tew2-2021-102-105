@@ -7,11 +7,13 @@ import java.util.Set;
 import impl.tew.business.resteasy.*;
 
 @SuppressWarnings("unchecked")
-public class Application extends javax.ws.rs.core.Application {
+public class Application extends javax.ws.rs.core.Application 
+{
 	private Set<Class<?>> classes = new HashSet<Class<?>>();
 	public Application() 
 	{
 		classes.add(AmigosServicesRsImpl.class);
+		classes.add(UsuariosServicesRsImpl.class);
 	}
 	
 	@Override
@@ -21,7 +23,8 @@ public class Application extends javax.ws.rs.core.Application {
 	}
 	
 	@Override
-	public Set<Object> getSingletons() {
+	public Set<Object> getSingletons() 
+	{
 		return Collections.EMPTY_SET;
 	}
 }

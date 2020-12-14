@@ -5,10 +5,12 @@ import com.tew.business.exception.EntityAlreadyExistsException;
 import com.tew.business.exception.EntityNotFoundException;
 import com.tew.model.Amigos;
 
+import impl.tew.business.classes.AmigosListaAlta;
 import impl.tew.business.classes.AmigosListaBaja;
 import impl.tew.business.classes.AmigosListaBuscar;
 import impl.tew.business.classes.AmigosListaListado;
 import impl.tew.business.classes.AmigosListaUpdate;
+
 public class AmigosServicesRsImpl implements AmigosServicesRs
 {
 
@@ -17,7 +19,6 @@ public class AmigosServicesRsImpl implements AmigosServicesRs
 	{
 		try 
 		{
-			System.out.println("Lista ");
 			return new AmigosListaListado().getAmigosLista();
 		} 
 		
@@ -32,7 +33,7 @@ public class AmigosServicesRsImpl implements AmigosServicesRs
 	public Amigos find(String a, String b) throws EntityNotFoundException 
 	{
 		Amigos amigos = new Amigos(a,b,true);
-		System.out.println(a+" "+b);
+		System.out.println(a + " " + b);
 		return new AmigosListaBuscar().find(amigos);
 	}
 
@@ -46,7 +47,7 @@ public class AmigosServicesRsImpl implements AmigosServicesRs
 	@Override
 	public void saveAmigos(Amigos amigos) throws EntityAlreadyExistsException 
 	{
-		
+		new AmigosListaAlta().save(amigos);
 	}
 
 	@Override
@@ -62,14 +63,14 @@ public class AmigosServicesRsImpl implements AmigosServicesRs
 	}
 
 	@Override
-	public Amigos find(Amigos a) throws EntityNotFoundException {
-		
+	public Amigos find(Amigos a) throws EntityNotFoundException 
+	{
 		return null;
 	}
 
 	@Override
-	public void deleteAmigos(Amigos amigos) throws EntityNotFoundException {
-		// TODO Auto-generated method stub
+	public void deleteAmigos(Amigos amigos) throws EntityNotFoundException 
+	{
 		
 	}
 	

@@ -9,7 +9,7 @@ import com.tew.persistence.UsuarioDao;
 
 public class UsuariosListado {
 
-	public List<Usuario> getAlumnos() throws Exception 
+	public List<Usuario> getUsuarios() throws Exception 
 	{
 		UsuarioDao dao = Factories.persistence.createUsuarioDao();
 		return  dao.getUsuario();

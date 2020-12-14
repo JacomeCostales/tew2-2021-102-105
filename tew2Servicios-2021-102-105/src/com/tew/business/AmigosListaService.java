@@ -6,7 +6,8 @@ import com.tew.business.exception.EntityAlreadyExistsException;
 import com.tew.business.exception.EntityNotFoundException;
 import com.tew.model.Amigos;
 
-public interface AmigosListaService {
+public interface AmigosListaService 
+{
 
 	List<Amigos> getAmigosLista() throws Exception;
 	Amigos find(Amigos a) throws EntityNotFoundException;

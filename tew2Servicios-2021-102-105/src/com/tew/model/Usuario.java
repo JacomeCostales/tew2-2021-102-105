@@ -1,7 +1,12 @@
 package com.tew.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
 
-public class Usuario {
+import com.sun.xml.internal.txw2.annotation.XmlElement;
+
+@XmlRootElement(name = "usuarios") 
+public class Usuario 
+{
 	
 	private String email;
 	private String passwd;
@@ -9,40 +14,61 @@ public class Usuario {
 	private String nombre;
 	
 		
-	public Usuario(String emailRegistrado, String contraseñaRegistrado, String nombreRegistrado, String rolRegistrado) {
+	public Usuario(String emailRegistrado, String contraseñaRegistrado, String nombreRegistrado, String rolRegistrado) 
+	{
 		email = emailRegistrado;
 		passwd = contraseñaRegistrado;
 		nombre = nombreRegistrado;
 		rol = rolRegistrado;
 	}
+	
 	public Usuario() 
 	{
 		super();
 	}
-	public String getEmail() {
+	
+	@XmlElement
+	public String getEmail() 
+	{
 		return email;
 	}
-	public void setEmail(String email) {
+	
+	public void setEmail(String email) 
+	{
 		this.email = email;
 	}
-	public String getPasswd() {
+	
+	@XmlElement
+	public String getPasswd() 
+	{
 		return passwd;
 	}
-	public void setPasswd(String passwd) {
+	
+	public void setPasswd(String passwd)
+	{
 		this.passwd = passwd;
 	}
-	public String getRol() {
+	
+	@XmlElement
+	public String getRol() 
+	{
 		return rol;
 	}
-	public void setRol(String rol) {
+	
+	public void setRol(String rol) 
+	{
 		this.rol = rol;
 	}
-	public String getNombre() {
+	
+	@XmlElement
+	public String getNombre() 
+	{
 		return nombre;
 	}
-	public void setNombre(String nombre) {
+	
+	public void setNombre(String nombre) 
+	{
 		this.nombre = nombre;
 	}
-
 	
 }

@@ -22,7 +22,7 @@ public class SimpleUsuariosService implements UsuariosService {
 
 	@Override
 	public List<Usuario> getUsuarios() throws Exception{
-		return new UsuariosListado().getAlumnos();
+		return new UsuariosListado().getUsuarios();
 	}
 
 	@Override
