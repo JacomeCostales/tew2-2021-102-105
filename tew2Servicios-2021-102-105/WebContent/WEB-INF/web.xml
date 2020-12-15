@@ -31,11 +31,7 @@
     <param-value>true</param-value>
   </context-param>
   
-  
-  
-  
-  
-  
+
  <!-- CONFIGURACION DE RESTEASY -->
  <!-- Es necesario incluir esta variable de contexto para que
  Resteasy reconozca el mapeo /rs/ correspondiente a servicios REST.

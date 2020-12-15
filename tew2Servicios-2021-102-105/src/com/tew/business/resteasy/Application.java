@@ -14,6 +14,9 @@ public class Application extends javax.ws.rs.core.Application
 	{
 		classes.add(AmigosServicesRsImpl.class);
 		classes.add(UsuariosServicesRsImpl.class);
+		classes.add(AdministradorServicesRsImpl.class);
+		classes.add(PublicacionesServicesRsImpl.class);
+		classes.add(LoginServicesRsImpl.class);
 	}
 	
 	@Override
