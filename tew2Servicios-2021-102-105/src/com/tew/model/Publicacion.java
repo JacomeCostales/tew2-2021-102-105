@@ -62,7 +62,11 @@ public class Publicacion {
 		fecha = fecha_format.getTime();
 	}
 
-	
+	@XmlElement
+	public String getFecha_string() {
+		
+		return new Date(fecha).toString();
+	}
 	
 	
 
