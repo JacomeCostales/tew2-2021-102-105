@@ -36,5 +36,6 @@ public interface AmigosServicesRs extends AmigosListaService
 	 @GET
 	 @Path("{email}")
 	 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	 public List<Amigos> getListadoPeticiones(@PathParam("email")String email); 
+	 public List<Amigos> getListadoPeticiones(@PathParam("email")String email);
+	 
 }

@@ -74,5 +74,20 @@ public class AmigosServicesRsImpl implements AmigosServicesRs
 		
 	}
 	
-	
+	 public void agregarAmigo(String email, String emailAmigo)
+	 {
+		 Amigos agregarAmigo = new Amigos();
+		 agregarAmigo.setEmail_usuario(email);
+		 agregarAmigo.setEmail_amigo(emailAmigo);
+		 agregarAmigo.setAceptada(false);
+		 try 
+		 {
+			new AmigosListaAlta().save(agregarAmigo);
+		 } 
+		 catch (EntityAlreadyExistsException e) 
+		 {
+			System.out.println("ERROR CUANDO INTENTAS AGREGAR UN AMIGO");
+			e.printStackTrace();
+		 }
+	 }
 }

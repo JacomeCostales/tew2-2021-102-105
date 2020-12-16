@@ -44,12 +44,12 @@ public interface UsuariosServicesRs extends UsuariosService
 	List<Usuario> getUsuariosFiltrados(@PathParam("a") String a, @PathParam("b") String b) throws Exception;
 	
 	@GET
-	@Path("{email")
+	@Path("{email}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	List<Usuario> getListadoPeticiones(@PathParam("email") String email);
 	
 	@GET
-	@Path("email")
+	@Path("listadoEnvios/{email}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	List<Usuario> listadoEnvios(@PathParam("email") String email);
 }

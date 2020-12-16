@@ -6,9 +6,11 @@ import com.tew.model.Amigos;
 import com.tew.persistence.AmigosDao;
 import com.tew.persistence.exception.AlreadyPersistedException;
 
-public class AmigosListaAlta {
+public class AmigosListaAlta 
+{
 
-	public void save(Amigos amigos) throws EntityAlreadyExistsException {
+	public void save(Amigos amigos) throws EntityAlreadyExistsException 
+	{
 		AmigosDao dao = Factories.persistence.createAmigosDao();
 		try {
 			dao.save(amigos);
@@ -17,5 +19,7 @@ public class AmigosListaAlta {
 			throw new EntityAlreadyExistsException("Amigos ya existen " + amigos, ex);
 		}
 	}
+	
+	
 
 }
