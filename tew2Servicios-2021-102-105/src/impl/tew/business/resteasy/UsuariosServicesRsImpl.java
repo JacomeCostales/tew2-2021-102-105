@@ -18,6 +18,7 @@ public class UsuariosServicesRsImpl implements UsuariosServicesRs
 	{
 		try 
 		{
+			System.out.println("Estamos en getUsuarios");
 			return new UsuariosListado().getUsuarios();
 		} 
 		
@@ -52,21 +53,25 @@ public class UsuariosServicesRsImpl implements UsuariosServicesRs
 		new UsuariosBaja().delete(email);
 	}
 
+	//Aqui le pasamos primero el email del usuario en sesion y despues el texto a filtrar para mostrar los usuarios adecuados
 	@Override
 	public List<Usuario> getUsuariosFiltrados(String a, String b) throws Exception 
 	{
 		return new UsuariosListado().getUsuariosFiltrados(a, b);
 	}
 
+	//Muestra los usuarios a los que puede enviar invitacion el usuario con email pasado como parametro
 	@Override
 	public List<Usuario> getListadoPeticiones(String email) 
 	{
+		System.out.println(email);
 		return new UsuariosListado().getListadoPeticiones(email);
 	}
 
 	@Override
 	public List<Usuario> listadoEnvios(String email) 
 	{
+		System.out.println(email);
 		return new UsuariosListado().getListadoEnvios(email);
 	}
 

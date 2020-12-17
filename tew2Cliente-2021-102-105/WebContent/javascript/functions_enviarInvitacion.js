@@ -1,0 +1,97 @@
+$(function() 
+{
+	 var model = new Model();
+	 var view = new View();
+	 var control = new Controller(model, view);
+	 control.init();
+}); 
+
+
+function Model()
+{
+	this.tablaUsuarios = null;
+	 this.load = function(emailUsuario) 
+	 {
+		 console.log(emailUsuario);
+		 this.tablaUsuarios = UsuariosServicesRs.listadoEnvios({email : emailUsuario, $contentType : "application/json"});	 
+	 }
+	 
+	this.createAmigo = function(emailUsuario, emailAmigo) 
+	{
+		var amigo = 
+		{
+				email_usuario : emailUsuario,
+				email_amigo : emailAmigo,
+				aceptada : false
+		};
+	    return amigo;
+	}
+		
+	this.agregarAmigo = function(amigo) 
+	{
+		AmigosServicesRs.saveAmigos({$entity : amigo, $contentType : "application/json"});
+	}
+};
+
+function View()
+{
+	this.obtenerTextoFiltro = function() 
+	{
+		var texto = $("#textoFiltro").val();
+		return texto;
+	}
+	
+	this.obtenerEmailAmigo = function(celda) 
+	{
+		var emailAmigo = String(celda.closest('tr').find('td').get(0).innerHTML);
+		return emailAmigo;
+	}
+	
+	 this.list = function (lista) 
+	 {
+		 $("#tablaUsuarios").html("");
+		 $("#tablaUsuarios").html( "<thead>" + "<tr>" + "<th>E-mail</th>" + "<th>Nombre</th>" + "<th>Rol</th>" + "<th>Agregar Amigo</th>" + "</tr>" + "</thead>" + "<tbody>" + "</tbody>");
+		 
+		 for ( var i in lista) 
+		 {
+			 var usuario = lista[i];
+			 $("#tablaUsuarios tbody").append("<tr>"+ "<td>" + usuario.email + "</td>"  + "<td>" + usuario.nombre + "</td>" + "<td>" + usuario.rol + "</td>" + "<td>" + "<input type='button' value='Agregar Amigo' class='botonAgregarAmigo'/>" + "</td>"  + "</tr>");
+		 }
+	 } 
+};
+
+function Controller(varmodel, varview) 
+{
+	 var that = this;
+	 this.model = varmodel;
+	 this.view = varview;
+	 this.init = function() 
+	 {
+		 this.model.load("user1@email.es");
+		 this.view.list(this.model.tablaUsuarios);
+		 
+		 $("#tablaUsuarios").on("click", ".botonAgregarAmigo", function(event) 
+		    {
+				var emailAmigo = that.view.obtenerEmailAmigo($(this));
+				var amigos = that.model.createAmigo("user1@email.es", emailAmigo);
+				that.model.agregarAmigo(amigos);
+				that.model.load("user1@email.es"); 
+				that.view.list(that.model.tablaUsuarios);
+			});
+		 
+		 
+		 $(document).ready(function(){
+			  $("#textoFiltro").on("keyup", function() 
+			   {
+			    var value = $(this).val().toLowerCase();
+			    $("#tablaUsuarios tbody tr").filter(function() 
+			    {
+			    	var string_original = $(this).text().toLowerCase();
+	                var string_filtrar = string_original.substring(0, string_original.length - 7);
+			        $(this).toggle(string_filtrar.indexOf(value) > -1)
+			    });
+			  });
+			});
+		 
+	 }
+};

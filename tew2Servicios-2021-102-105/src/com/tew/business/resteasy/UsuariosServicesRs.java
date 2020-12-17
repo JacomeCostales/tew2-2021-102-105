@@ -22,7 +22,7 @@ public interface UsuariosServicesRs extends UsuariosService
 	List<Usuario> getUsuarios() throws Exception;
 	
 	@GET
-	@Path("email")
+	@Path("findByEmail/{email}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	Usuario findByEmail(@PathParam("email") String email) throws EntityNotFoundException;
 	
@@ -35,16 +35,16 @@ public interface UsuariosServicesRs extends UsuariosService
 	void updateUsuario(Usuario usuario) throws EntityNotFoundException;
 	
 	@DELETE
-	@Path("email")
+	@Path("deleteUsuario/{email}")
 	void deleteUsuario(@PathParam("email") String email) throws EntityNotFoundException;
 	
 	@GET
-	@Path("{a}/{b}")
+	@Path("getUsuariosFiltrados/{a}/{b}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	List<Usuario> getUsuariosFiltrados(@PathParam("a") String a, @PathParam("b") String b) throws Exception;
 	
 	@GET
-	@Path("{email}")
+	@Path("getListadoPeticiones/{email}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	List<Usuario> getListadoPeticiones(@PathParam("email") String email);
 	

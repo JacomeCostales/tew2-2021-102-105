@@ -157,6 +157,10 @@ public class AmigosJdbcDao implements AmigosDao {
 			// Obtenemos la conexi��n a la base de datos.
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
+			System.out.println(a.getEmail_usuario());
+			System.out.println(a.getEmail_amigo());
+			System.out.println(a.isAceptada());
+			
 			ps = con.prepareStatement("insert into Amigos (email_usuario,email_amigo,aceptada) values (?, ?, ?)");
 			
 			ps.setString(1, a.getEmail_usuario());
@@ -197,9 +201,10 @@ public class AmigosJdbcDao implements AmigosDao {
 			// Obtenemos la conexi��n a la base de datos.
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
-			ps = con.prepareStatement(
-					"update Amigos set aceptada = ? where email_usuario = ? and email_amigo = ?");
-			
+			ps = con.prepareStatement("update Amigos set aceptada = ? where email_usuario = ? and email_amigo = ?");
+			System.out.println(a.isAceptada());
+			System.out.println(a.getEmail_usuario());
+			System.out.println(a.getEmail_amigo());
 			ps.setBoolean(1, a.isAceptada());
 			ps.setString(2, a.getEmail_usuario());
 			ps.setString(3, a.getEmail_amigo());

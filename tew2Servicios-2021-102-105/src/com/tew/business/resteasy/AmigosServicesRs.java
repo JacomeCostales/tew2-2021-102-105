@@ -15,15 +15,14 @@ public interface AmigosServicesRs extends AmigosListaService
 	 public List<Amigos> getAmigosLista() throws Exception; 
 	 
 	 @GET
-	 @Path("{a}/{b}")
+	 @Path("find/{a}/{b}")
 	 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	 Amigos find(@PathParam("a") String a, @PathParam("b") String b) throws EntityNotFoundException;
 	 
 	 
 	 @DELETE
-	 @Path("{a}/{b}")
+	 @Path("deleteAmigos/{a}/{b}")
 	 void deleteAmigos(@PathParam("a") String a, @PathParam("b") String b) throws EntityNotFoundException;
-	 
 	 
 	 @PUT
 	 @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -34,7 +33,7 @@ public interface AmigosServicesRs extends AmigosListaService
 	 void updateAmigos(Amigos amigos) throws EntityNotFoundException;
 
 	 @GET
-	 @Path("{email}")
+	 @Path("getListadoPeticiones/{email}")
 	 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	 public List<Amigos> getListadoPeticiones(@PathParam("email")String email);
 	 
