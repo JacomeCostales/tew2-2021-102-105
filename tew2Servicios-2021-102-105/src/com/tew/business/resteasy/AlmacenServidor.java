@@ -1,8 +1,6 @@
 package com.tew.business.resteasy;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import com.tew.model.User;
@@ -29,6 +27,18 @@ public class AlmacenServidor {
 
 	public void setUsuariosLogged(Set<User> usuariosLogged) {
 		this.usuariosLogged = usuariosLogged;
+	}
+	
+	public boolean autentica(String N, String T) 
+	{
+		for(User a: almacen.getUsuariosLogged())
+		{
+			if(a.getLogin().equals(N) && a.getRol().equals(T))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	

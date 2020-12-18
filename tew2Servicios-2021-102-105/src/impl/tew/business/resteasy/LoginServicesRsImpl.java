@@ -35,16 +35,16 @@ public class LoginServicesRsImpl implements LoginServicesRs
 	}
 
 	@Override
-	public void logout(Usuario usuario) 
+	public void logout(Usuario usuario, String N, String T) 
 	{
-		if(usuario != null)
-			{
-			     User u = new User(usuario.getEmail(), usuario.getRol());
-			     AlmacenServidor.getAlmacen().getUsuariosLogged().remove(u);
-			}
+		if(usuario != null && AlmacenServidor.getAlmacen().autentica(N,T))
+		{
+			User u = new User(usuario.getEmail(), usuario.getRol());
+			AlmacenServidor.getAlmacen().getUsuariosLogged().remove(u);
+		}
 		else
 		{
-			System.out.println("logout ha recibido un usuario null");
+			System.out.println("Error al intentar hacer logout");
 		}
 	}
 

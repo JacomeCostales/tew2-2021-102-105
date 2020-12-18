@@ -60,7 +60,7 @@ function Controller(varmodel)
 						rol : token
 				};
 				console.log("HE LLEGADO AL LOGOUT");
-				LoginServicesRs.logout({$entity : user, $contentType : "application/json"});
+				LoginServicesRs.logout({$entity : user, N : email, T : token, $contentType : "application/json"});
 				sessionStorage.removeItem("token");
 				sessionStorage.removeItem('usuario');
 				window.location.href="login.html";

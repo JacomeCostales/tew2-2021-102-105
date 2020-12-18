@@ -31,6 +31,7 @@ public interface LoginServicesRs extends LoginService
 	boolean validLogin(String name, String password);
 	
 	@DELETE
+	@Path("logout/{N}/{T}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	void logout(Usuario usuario);
+	void logout(Usuario usuario, @PathParam("N") String N, @PathParam("T") String T);
 }
