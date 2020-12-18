@@ -24,8 +24,16 @@ function Model(){
 	 
 	// Eliminación un alumno existente
 	 this.remove = function() {
-		 // Llamamos al servicio de borrado de alumno
-		 AdministradorServicesRs.borrarUsarios(["user9@email.es"]);
+		
+		 var elements = document.getElementById("listaUsuarios").elements;
+
+		 for (var i = 0, element; element = elements[i++];) {
+		     if (element.type === "checkbox" && element.checked === true)
+		         console.log(element.value)
+		 }
+		 
+		 
+			 //AdministradorServicesRs.borrarUsarios({a: usuario,$contentType : "application/json"});
 		 
 		 // Recargamos la lista de alumnos.
 		 this.load();
@@ -36,7 +44,8 @@ function Model(){
 //Clase que contiene la gestión de la capa Vista
 function View(){
 	 this.list = function (lista) {
-		
+		 
+		 
 		 for ( var i in lista) {
 			 var usuario = lista[i];
 			 $("#listaUsuarios").append("<input type='checkbox' id='usuario"+i+"' name='usuario"+i+"' value="+usuario.email+"><label for='usuario"+i+"'> "+usuario.email+"</label><br>");
@@ -59,13 +68,13 @@ function Controller(varmodel, varview) {
 		 
 		 this.view.list(this.model.listUsuarios);
 		 
-		 
-		 
+
 		 $("#btnBorrar").click(
-					
+				
 				function() {
 					that.model.remove();
 					that.model.load();
+					("#listaUsuarios").empty();
 					that.view.list(that.model.listUsuarios);
 				});
 

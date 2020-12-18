@@ -1,4 +1,5 @@
 package impl.tew.business.resteasy;
+import com.tew.business.resteasy.AlmacenServidor;
 import com.tew.business.resteasy.LoginServicesRs;
 import com.tew.model.User;
 import com.tew.model.Usuario;
@@ -12,6 +13,8 @@ public class LoginServicesRsImpl implements LoginServicesRs
 	public User verify(String name, String password) 
 	{
 		User usuario = new SimpleLoginService().verify(name, password);
+		if(usuario != null)AlmacenServidor.getAlmacen().getUsuariosLogged().add(usuario);
+		
 		return usuario;
 	}
 

@@ -8,8 +8,9 @@ import impl.tew.persistence.AdministradorJdbcDao;
 public class AdministradorServicesRsImpl implements AdministradorServicesRs{
 
 	@Override
+	
 	public void borrarUsarios(List<String> a) throws NotPersistedException {
-
+		for(String s :a)System.out.println(s);
 		new AdministradorJdbcDao().borrarUsarios(a);
 		
 	}

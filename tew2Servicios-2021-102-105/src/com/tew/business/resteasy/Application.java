@@ -13,6 +13,9 @@ import impl.tew.business.resteasy.*;
 public class Application extends javax.ws.rs.core.Application 
 {
 	private Set<Class<?>> classes = new HashSet<Class<?>>();
+	
+	
+	
 	public Application() 
 	{
 		classes.add(AmigosServicesRsImpl.class);
@@ -33,5 +36,7 @@ public class Application extends javax.ws.rs.core.Application
 	{
 		return Collections.EMPTY_SET;
 	}
+	
+	
 	
 }
