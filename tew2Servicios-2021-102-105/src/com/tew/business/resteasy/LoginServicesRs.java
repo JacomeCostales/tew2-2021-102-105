@@ -29,4 +29,8 @@ public interface LoginServicesRs extends LoginService
 	@Path("validLogin/{name}/{password}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	boolean validLogin(String name, String password);
+	
+	@DELETE
+	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	void logout(Usuario usuario);
 }

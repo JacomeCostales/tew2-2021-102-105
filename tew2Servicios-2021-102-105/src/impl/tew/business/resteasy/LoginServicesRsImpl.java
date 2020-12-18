@@ -14,7 +14,6 @@ public class LoginServicesRsImpl implements LoginServicesRs
 	{
 		User usuario = new SimpleLoginService().verify(name, password);
 		if(usuario != null)AlmacenServidor.getAlmacen().getUsuariosLogged().add(usuario);
-		
 		return usuario;
 	}
 
@@ -30,8 +29,23 @@ public class LoginServicesRsImpl implements LoginServicesRs
 	}
 
 	@Override
-	public Usuario compruebaExiste(String emailRegistrado) {
+	public Usuario compruebaExiste(String emailRegistrado) 
+	{
 		return new SimpleLoginService().compruebaExiste(emailRegistrado);
+	}
+
+	@Override
+	public void logout(Usuario usuario) 
+	{
+		if(usuario != null)
+			{
+			     User u = new User(usuario.getEmail(), usuario.getRol());
+			     AlmacenServidor.getAlmacen().getUsuariosLogged().remove(u);
+			}
+		else
+		{
+			System.out.println("logout ha recibido un usuario null");
+		}
 	}
 
 }

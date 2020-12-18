@@ -49,9 +49,18 @@ function Controller(varmodel)
 		    
 		});
 		
-		$("#logout").click(
+		$("#botonLogout").click(
 			function(event)
 			{
+				var email = sessionStorage.getItem("usuario");
+				var token = sessionStorage.getItem("token");
+				var user = 
+				{
+						email : email,
+						rol : token
+				};
+				console.log("HE LLEGADO AL LOGOUT");
+				LoginServicesRs.logout({$entity : user, $contentType : "application/json"});
 				sessionStorage.removeItem("token");
 				sessionStorage.removeItem('usuario');
 				window.location.href="login.html";
