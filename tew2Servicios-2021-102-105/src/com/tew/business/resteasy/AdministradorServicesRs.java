@@ -12,7 +12,7 @@ public interface AdministradorServicesRs extends AdministradorService{
 	
 	@DELETE
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	void borrarUsarios(List<String> a) throws NotPersistedException;
+	void borrarUsarios(List<String> a)  throws NotPersistedException;
 	
 	@POST
 	void reiniciarBD() throws Exception;

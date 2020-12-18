@@ -1,4 +1,5 @@
 package impl.tew.business.resteasy;
+import java.util.Arrays;
 import java.util.List;
 import com.tew.business.resteasy.AdministradorServicesRs;
 import com.tew.persistence.exception.NotPersistedException;
@@ -8,6 +9,7 @@ public class AdministradorServicesRsImpl implements AdministradorServicesRs{
 
 	@Override
 	public void borrarUsarios(List<String> a) throws NotPersistedException {
+
 		new AdministradorJdbcDao().borrarUsarios(a);
 		
 	}
@@ -17,5 +19,8 @@ public class AdministradorServicesRsImpl implements AdministradorServicesRs{
 		new AdministradorJdbcDao().reiniciarBD();
 		
 	}
+
+	
+	
 
 }
