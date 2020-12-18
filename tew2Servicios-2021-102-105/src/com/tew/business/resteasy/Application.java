@@ -4,6 +4,9 @@ package com.tew.business.resteasy;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.tew.model.User;
+
 import impl.tew.business.resteasy.*;
 
 @SuppressWarnings("unchecked")
@@ -30,4 +33,5 @@ public class Application extends javax.ws.rs.core.Application
 	{
 		return Collections.EMPTY_SET;
 	}
+	
 }

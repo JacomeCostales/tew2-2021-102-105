@@ -1,9 +1,18 @@
 $(function() 
 {
+	if(sessionStorage.getItem('token')!=null && sessionStorage.getItem('usuario')!=null)
+	{
 	 var model = new Model();
 	 var view = new View();
 	 var control = new Controller(model, view);
 	 control.init();
+	}
+	else
+	{
+		alert("Usted no se ha autenticado");
+		window.location.href="login.html";
+	}
+	
 }); 
 
 
@@ -67,15 +76,15 @@ function Controller(varmodel, varview)
 	 this.view = varview;
 	 this.init = function() 
 	 {
-		 this.model.load("user1@email.es");
+		 this.model.load(sessionStorage.getItem('usuario'));
 		 this.view.list(this.model.tablaUsuarios);
 		 
 		 $("#tablaUsuarios").on("click", ".botonAgregarAmigo", function(event) 
 		    {
 				var emailAmigo = that.view.obtenerEmailAmigo($(this));
-				var amigos = that.model.createAmigo("user1@email.es", emailAmigo);
+				var amigos = that.model.createAmigo(sessionStorage.getItem('usuario'), emailAmigo);
 				that.model.agregarAmigo(amigos);
-				that.model.load("user1@email.es"); 
+				that.model.load(sessionStorage.getItem('usuario')); 
 				that.view.list(that.model.tablaUsuarios);
 			});
 		 

@@ -8,10 +8,11 @@ import com.tew.model.User;
 import com.tew.model.Usuario;
 
 @Path("/LoginServicesRs")
-public interface LoginServicesRs extends LoginService {
+public interface LoginServicesRs extends LoginService 
+{
 
 	@GET
-	@Path("{name}/{password}")
+	@Path("verify/{name}/{password}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	User verify(@PathParam("name") String name, @PathParam("password") String password);
 	
@@ -20,7 +21,12 @@ public interface LoginServicesRs extends LoginService {
 	void registry(Usuario usuarioRegistrar);
 	
 	@GET
-	@Path("{emailRegistrado}")
+	@Path("compruebaExiste/{emailRegistrado}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	Usuario compruebaExiste(@PathParam("emailRegistrado") String emailRegistrado);
+
+	@GET
+	@Path("validLogin/{name}/{password}")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	boolean validLogin(String name, String password);
 }

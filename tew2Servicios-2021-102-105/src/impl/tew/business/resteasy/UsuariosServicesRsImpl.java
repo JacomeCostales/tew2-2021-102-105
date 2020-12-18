@@ -2,6 +2,7 @@ package impl.tew.business.resteasy;
 import java.util.List;
 import com.tew.business.exception.EntityAlreadyExistsException;
 import com.tew.business.exception.EntityNotFoundException;
+import com.tew.business.resteasy.Application;
 import com.tew.business.resteasy.UsuariosServicesRs;
 import com.tew.model.Usuario;
 import impl.tew.business.classes.UsuariosAlta;

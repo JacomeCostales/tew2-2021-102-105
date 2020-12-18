@@ -79,15 +79,15 @@ function Controller(varmodel, varview)
 	 this.view = varview;
 	 this.init = function() 
 	 {
-		 this.model.load("user1@email.es");
+		 this.model.load(sessionStorage.getItem('usuario'));
 		 this.view.list(this.model.tablaPeticiones);
 		 
 		 $("#tablaPeticiones").on("click", ".botonAceptarAmigo", function(event) 
 		    {
 				var emailAmigo = that.model.obtenerPeticionAceptar(that.model.tablaPeticiones, $(this));
-				var amigos = that.model.createAmigo("user1@email.es", emailAmigo);
+				var amigos = that.model.createAmigo(sessionStorage.getItem('usuario'), emailAmigo);
 				that.model.aceptarAmigo(amigos);
-				that.model.load("user1@email.es"); 
+				that.model.load(sessionStorage.getItem('usuario')); 
 				that.view.list(that.model.tablaPeticiones);
 			});
 	 }

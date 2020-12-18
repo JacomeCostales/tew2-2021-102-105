@@ -27,7 +27,8 @@ public class SimpleLoginService implements LoginService {
 		return new User(login, rol);
 	}
 	
-	private boolean validLogin(String login, String password) {
+	public boolean validLogin(String login, String password) 
+	{
 		List<Usuario> U = new UsuariosListado().getInicioSesion(login, password);
 		if(U.isEmpty())
 		{
