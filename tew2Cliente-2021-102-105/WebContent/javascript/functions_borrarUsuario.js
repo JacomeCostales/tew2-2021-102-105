@@ -25,16 +25,19 @@ function Model(){
 	// Eliminación un alumno existente
 	 this.remove = function() {
 		
-		 var elements = document.getElementById("listaUsuarios").elements;
+		 
 
-		 for (var i = 0, element; element = elements[i++];) {
-		     if (element.type === "checkbox" && element.checked === true)
-		         console.log(element.value)
-		 }
 		 
+		 $("input:checkbox").each(function() {
+			    
+			 if($(this).prop('checked')){
+				 AdministradorServicesRs.borrarUsarios({a: [$(this).val()],$contentType : "application/json"});
+				 
+			 };
+			 
+			   });
 		 
-			 //AdministradorServicesRs.borrarUsarios({a: usuario,$contentType : "application/json"});
-		 
+
 		 // Recargamos la lista de alumnos.
 		 this.load();
 	 }
@@ -45,12 +48,15 @@ function Model(){
 function View(){
 	 this.list = function (lista) {
 		 
+		 $("#listaUsuarios").empty()
 		 
 		 for ( var i in lista) {
 			 var usuario = lista[i];
 			 $("#listaUsuarios").append("<input type='checkbox' id='usuario"+i+"' name='usuario"+i+"' value="+usuario.email+"><label for='usuario"+i+"'> "+usuario.email+"</label><br>");
 		 }
-	 } 
+	 }
+	 
+	 
 
 };
 
@@ -74,7 +80,7 @@ function Controller(varmodel, varview) {
 				function() {
 					that.model.remove();
 					that.model.load();
-					("#listaUsuarios").empty();
+					
 					that.view.list(that.model.listUsuarios);
 				});
 
