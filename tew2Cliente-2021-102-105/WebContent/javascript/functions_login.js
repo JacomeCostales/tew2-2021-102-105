@@ -39,11 +39,11 @@ function Controller(varmodel)
 			var pass=$("#passwd").val();
 		    if (that.model.comprueba(user,pass) == true)
 		    {	
-		    	window.location.href="index.html";	
+		    	window.location.href="inicioSesion.html";	
 		    }
 		    else
 		    {
-		    	alert("Usuario y Contraseña no validos");
+		    	alert("Usuario y Contrasena no validos");
 		    }
 		    	
 		    
@@ -63,7 +63,7 @@ function Controller(varmodel)
 				LoginServicesRs.logout({$entity : user, N : email, T : token, $contentType : "application/json"});
 				sessionStorage.removeItem("token");
 				sessionStorage.removeItem('usuario');
-				window.location.href="login.html";
+				window.location.href="inicioSesion.html";
 			})
 		}
 			

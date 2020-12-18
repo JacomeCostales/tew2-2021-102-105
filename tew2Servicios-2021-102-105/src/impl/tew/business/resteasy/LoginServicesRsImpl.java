@@ -39,6 +39,7 @@ public class LoginServicesRsImpl implements LoginServicesRs
 	{
 		if(usuario != null && AlmacenServidor.getAlmacen().autentica(N,T))
 		{
+			System.out.println("Exito al intentar hacer logout");
 			User u = new User(usuario.getEmail(), usuario.getRol());
 			AlmacenServidor.getAlmacen().getUsuariosLogged().remove(u);
 		}
