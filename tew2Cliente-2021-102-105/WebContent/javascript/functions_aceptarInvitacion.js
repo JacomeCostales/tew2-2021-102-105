@@ -10,7 +10,7 @@ $(function()
 	else
 	{
 		alert("Usted no se ha autenticado");
-		window.location.href="inicioSesion.html";
+		window.location.href="index.html";
 	}
 		}); 
 

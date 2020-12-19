@@ -74,7 +74,7 @@ function Controller(varmodel)
 				LoginServicesRs.logout({$entity : user, N : email, T : token, $contentType : "application/json"});
 				sessionStorage.removeItem("token");
 				sessionStorage.removeItem('usuario');
-				window.location.href="inicioSesion.html";
+				window.location.href="index.html";
 			})
 		}
 			

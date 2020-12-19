@@ -154,7 +154,7 @@ public class AdministradorJdbcDao implements AdministradorDao {
 			Iterator<JSONObject> amigos_iter = amigos.iterator();
 			while (amigos_iter.hasNext()) {
 				JSONObject amigo = amigos_iter.next();
-				l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('"+amigo.get("emailusuario").toString()+"','"+amigo.get("emailusuario").toString()+"',1);");
+				l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('"+amigo.get("emailusuario").toString()+"','"+amigo.get("emailamigo").toString()+"',1);");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

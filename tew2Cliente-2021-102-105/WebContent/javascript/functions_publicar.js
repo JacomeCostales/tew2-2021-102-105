@@ -10,7 +10,7 @@ $(function()
 	else
 	{
 		alert("Usted no se ha autenticado");
-		window.location.href="inicioSesion.html";
+		window.location.href="index.html";
 	}
 		}); 
 
@@ -39,7 +39,7 @@ function View(){
 		 var id_asig = Math.floor(Math.random() * 1000000); 
 		 var publicacion = {
 				 id : id_asig,
-				 email : "user1@email.es",
+				 email : sessionStorage.getItem('usuario'),
 				 titulo : $("#titulo").val(),
 				 texto : $("#texto").val(),
 				 fecha_format : fecha_actual

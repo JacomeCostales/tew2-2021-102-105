@@ -69,6 +69,8 @@ public class PublicacionesServicesRsImpl implements PublicacionesServicesRs{
 	@Override
 	public void savePublicacion(Publicacion publicacion,String N, String T) throws EntityAlreadyExistsException 
 	{
+		System.out.println(publicacion.getTexto());
+		
 		if(AlmacenServidor.getAlmacen().autentica(N,T))
 		{
 			new PublicacionesAlta().save(publicacion);

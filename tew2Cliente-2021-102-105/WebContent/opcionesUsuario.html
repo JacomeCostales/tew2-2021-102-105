@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="bootstrap/css/bootstrap-opcionesUsuario.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 <script type="text/javascript" src="http://localhost:8080/tew2Servicios-2021-102-105/rest-jsapi"></script>
 <script type="text/javascript" src="javascript/functions_login.js"></script>
 
@@ -29,30 +29,32 @@
 	***************************************************
 	-->
 		<div class="page-header">
-			<h1>RED SOCIAL</h1>
+			<h1 style="font-weight:900;color:white;">RED SOCIAL</h1></div>
 			<!-- 
 		***************************************************
 		* MENU CON ANIMACIONES **********************************
 		***************************************************
 		-->
+		<div class="row" style="height:15%">
 			<ul>
-				<li><a href="enviarInvitacion.html"><i class="fa fa-hand-spock-o" aria-hidden="true"></i></a></li>
-				<li><a href="aceptarInvitacion.html"><i class="fa fa-handshake-o" aria-hidden="true"></i></a></li>
-				<li><a href="publicar.html"><i class="fa fa-weixin" aria-hidden="true"></i></a></li>
-				<li><a href="mostrarpublicaciones.html"><i class="fa fa-street-view" aria-hidden="true"></i></a></li>
-				<li><a href="mostrarPublicacionesAmigos.html"><i class="fa fa-users" aria-hidden="true"></i></a></li>
-				<li><a href="inicioSesion.html" id ="botonLogout"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+				<li><a href="enviarInvitacion.html" target="formulario"><i class="fa fa-hand-spock-o" aria-hidden="true"></i></a></li>
+				<li><a href="aceptarInvitacion.html" target="formulario" ><i class="fa fa-handshake-o" aria-hidden="true"></i></a></li>
+				<li><a href="publicar.html" target="formulario"><i class="fa fa-weixin" aria-hidden="true"></i></a></li>
+				<li><a href="mostrarpublicaciones.html" target="formulario" ><i class="fa fa-street-view" aria-hidden="true"></i></a></li>
+				<li><a href="mostrarPublicacionesAmigos.html" target="formulario" ><i class="fa fa-users" aria-hidden="true"></i></a></li>
+				<li><a href="index.html" id ="botonLogout"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
 			</ul>
 		</div>
+		
 		
 			<!-- 
 	***************************************************
 	* SECCION PRINCIPAL DE FORMULARIOS EXTERNOS********
 	***************************************************
 	-->
-	<div class="row">
-			<div class="col-md-9">
-				<object name="formulario" type="text/html" data="inicioSesion.html" width="90%" height="500px"></object>
+	<div class="row" style="height:60%">
+			<div class="col-md-9" style="position:relative;width:100%;height:100%;">
+				<iframe name="formulario" src="" frameBorder="0" style="position:relative;width:100%;height:95%;"></iframe>
 			</div>
 
 
@@ -61,7 +63,7 @@
 	* ELEMENTO LATERAL INFORMATIVO ********************
 	***************************************************
 	-->
-			<div class="col-md-3 bg-info">
+			<div class="col-md-3 bg-info" style="position:relative;width:70%;height:95%;">
 				<aside>
 					<header>
 						<h2>Proyecto Red Social</h2>
@@ -87,10 +89,11 @@
 	* ELEMENTO PIE DE NAVEGACION** ********************
 	***************************************************
 	-->
+	
 		<div class="panel panel-default">
 			<div class="panel-footer">
 				<nav>
-					
+					<p>PONER ALGO AQUI</p>
 				</nav>
 			</div>
 		</div>
