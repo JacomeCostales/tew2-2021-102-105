@@ -12,7 +12,7 @@ import impl.tew.business.classes.*;
 
 public class PublicacionesServicesRsImpl implements PublicacionesServicesRs{
 
-	@Override
+	
 	public List<Publicacion> getPublicacionesPropias(String email, String order,String N, String T) throws Exception 
 	{
 		if(AlmacenServidor.getAlmacen().autentica(N,T))

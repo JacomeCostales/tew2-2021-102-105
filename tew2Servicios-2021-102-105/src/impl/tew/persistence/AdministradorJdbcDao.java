@@ -1,25 +1,20 @@
 package impl.tew.persistence;
-
-
 import java.sql.*;
 import java.util.*;
+
+import com.tew.business.resteasy.AlmacenServidor;
 import com.tew.persistence.AdministradorDao;
 import com.tew.persistence.exception.*;
-/**
- * 
- * @author Jácome y Miguel
- *
- */
+
+import org.json.simple.*;
+
+import java.util.Iterator;
+
+
 public class AdministradorJdbcDao implements AdministradorDao {	
-	
-	
-	
-	
+
 	@Override
 	public void borrarUsarios(List<String> a) throws NotPersistedException {
-		
-		
-		
 		
 		if(!a.isEmpty()) {
 			PreparedStatement ps1 = null;
@@ -76,8 +71,10 @@ public class AdministradorJdbcDao implements AdministradorDao {
 	@SuppressWarnings("resource")
 	@Override
 	public void reiniciarBD() {
-		PreparedStatement ps = null;
 		
+		AlmacenServidor.getAlmacen().getUsuariosLogged().clear();;
+		
+		PreparedStatement ps = null;
 		Connection con = null;
 
 		try {
@@ -126,70 +123,378 @@ public class AdministradorJdbcDao implements AdministradorDao {
 		l.add("CREATE TABLE Usuarios (email varchar(100) PRIMARY KEY, passwd varchar(100) NOT NULL,rol varchar(20) not null,nombre varchar(100) not null);");
 		l.add("CREATE TABLE Publicacion (ID int PRIMARY KEY, email varchar(100) NOT NULL REFERENCES Usuarios (email),titulo varchar(20) not null,texto varchar(300) not null,fecha bigint not null);");
 		l.add("CREATE TABLE Amigos (email_usuario varchar(100) REFERENCES Usuarios (email), email_amigo varchar(100) REFERENCES Usuarios (email), aceptada boolean not null);");
+		l.add("INSERT INTO Usuarios (email, passwd, rol, nombre) VALUES ('admin@email.es', 'admin', 'admin', 'Administrador');");
 		return l;
 	}
 	
 	private List<String> DB_data(){
 		List<String> l = new ArrayList<String>();
-		l.add("INSERT INTO Usuarios (email, passwd, rol, nombre) VALUES ('admin@email.es', 'admin', 'admin', 'Administrador');");
-		l.add("INSERT INTO Usuarios (email, passwd, rol, nombre) VALUES ('user1@email.es', 'user1', 'usuario', 'Usuario_1');");
-		l.add("INSERT INTO Usuarios (email, passwd, rol, nombre) VALUES ('user2@email.es', 'user2', 'usuario', 'Usuario_2');");
-		l.add("INSERT INTO Usuarios (email, passwd, rol, nombre) VALUES ('user3@email.es', 'user3', 'usuario', 'Usuario_3');");
-		l.add("INSERT INTO Usuarios (email, passwd, rol, nombre) VALUES ('user4@email.es', 'user4', 'usuario', 'Usuario_4');");
-		l.add("INSERT INTO Usuarios (email, passwd, rol, nombre) VALUES ('user5@email.es', 'user5', 'usuario', 'Usuario_5');");
-		l.add("INSERT INTO Usuarios (email, passwd, rol, nombre) VALUES ('user6@email.es', 'user6', 'usuario', 'Usuario_6');");
-		l.add("INSERT INTO Usuarios (email, passwd, rol, nombre) VALUES ('user7@email.es', 'user7', 'usuario', 'Usuario_7');");
-		l.add("INSERT INTO Usuarios (email, passwd, rol, nombre) VALUES ('user8@email.es', 'user8', 'usuario', 'Usuario_8');");
-		l.add("INSERT INTO Usuarios (email, passwd, rol, nombre) VALUES ('user9@email.es', 'user9', 'usuario', 'Usuario_9');");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('1','user1@email.es', 'Titulo1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1612774130000);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('2','user1@email.es', 'Titulo2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1664824530654);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('3','user1@email.es', 'Titulo3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1546324530754);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('4','user2@email.es', 'Titulo4', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1604274136450);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('5','user2@email.es', 'Titulo5', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1564824536570);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('6','user2@email.es', 'Titulo6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1306453306436);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('7','user3@email.es', 'Titulo7', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1565824530543);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('8','user3@email.es', 'Titulo8', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1504274133450);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('9','user3@email.es', 'Titulo8', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1530645335740);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('10','user4@email.es', 'Titulo10', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1530645334560);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('11','user4@email.es', 'Titulo11', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1541150934360);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('12','user4@email.es', 'Titulo12', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1564824530126);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('13','user5@email.es', 'Titulo13', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1564274130436);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('14','user5@email.es', 'Titulo14', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1541150930643);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('15','user5@email.es', 'Titulo15', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1565454530476);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('16','user6@email.es', 'Titulo16', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1504274130457);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('17','user6@email.es', 'Titulo17', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1530645330654);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('18','user6@email.es', 'Titulo18', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1541150976530);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('19','user7@email.es', 'Titulo19', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1564827654530);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('20','user7@email.es', 'Titulo20', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1541156783360);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('21','user7@email.es', 'Titulo21', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1504274138760);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('22','user8@email.es', 'Titulo22', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1541150789930);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('23','user8@email.es', 'Titulo23', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1570648765330);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('24','user8@email.es', 'Titulo24', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1504278794130);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('25','user9@email.es', 'Titulo25', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1541150870930);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('26','user9@email.es', 'Titulo26', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1530665330980);");
-		l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('27','user9@email.es', 'Titulo27', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus est ante, consequat nec risus quam.', 1573645339860);");
-		l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('user1@email.es','user2@email.es',1);");
-		l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('user1@email.es','user3@email.es',1);");
-		l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('user1@email.es','user4@email.es',1);");
-		l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('user2@email.es','user1@email.es',1);");
-		l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('user2@email.es','user3@email.es',1);");
-		l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('user2@email.es','user4@email.es',1);");
-		l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('user3@email.es','user4@email.es',1);");
-		l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('user4@email.es','user3@email.es',1);");
-		l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('user5@email.es','user6@email.es',1);");
-		l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('user5@email.es','user7@email.es',1);");
-		l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('user5@email.es','user8@email.es',1);");
-		l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('user6@email.es','user5@email.es',1);");
-		l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('user6@email.es','user7@email.es',1);");
-		l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('user6@email.es','user8@email.es',1);");
-		l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('user7@email.es','user8@email.es',1);");
-		l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('user8@email.es','user7@email.es',1);");
-		l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('user9@email.es','user1@email.es',1);");
-		l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('user9@email.es','user2@email.es',1);");
-		l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('user9@email.es','user3@email.es',1);");
-
 		
+		try {
+			Object obj = JSONValue.parse(data);
+ 
+			JSONObject jsonObject = (JSONObject) obj;
+			JSONArray usuarios = (JSONArray) jsonObject.get("usuarios");
+			JSONArray publicaciones = (JSONArray) jsonObject.get("publicaciones");
+			JSONArray amigos = (JSONArray) jsonObject.get("amigos");
+ 
+			Iterator<JSONObject> usu_iter = usuarios.iterator();
+			while (usu_iter.hasNext()) {
+				JSONObject usuario = usu_iter.next();
+				l.add("INSERT INTO Usuarios (email, passwd, rol, nombre) VALUES ('"+usuario.get("email").toString()+"', '"+usuario.get("passwd").toString()+"', '"+usuario.get("rol").toString()+"', '"+usuario.get("nombre").toString()+"');");
+			}
+			
+			int id = 0;
+			Iterator<JSONObject> publi_iter = publicaciones.iterator();
+			while (publi_iter.hasNext()) {
+				JSONObject publicacion = publi_iter.next();
+				l.add("INSERT INTO Publicacion (ID,email, titulo, texto, fecha) VALUES ('"+id+++"','"+publicacion.get("email").toString()+"', '"+publicacion.get("titulo").toString()+"', '"+publicacion.get("texto").toString()+"', "+publicacion.get("fecha").toString()+");");
+			}
+			
+			Iterator<JSONObject> amigos_iter = amigos.iterator();
+			while (amigos_iter.hasNext()) {
+				JSONObject amigo = amigos_iter.next();
+				l.add("INSERT INTO Amigos (email_usuario,email_amigo,aceptada) VALUES ('"+amigo.get("emailusuario").toString()+"','"+amigo.get("emailusuario").toString()+"',1);");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return l;
 	}
-
+	
+	private final String data = "{\"usuarios\": [\n" + 
+			"  {\n" + 
+			"    \"email\": \"user1@dominio.com\",\n" + 
+			"    \"passwd\": \"user1\",\n" + 
+			"    \"rol\": \"usuario\",\n" + 
+			"    \"nombre\": \"user1\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"email\": \"user2@dominio.com\",\n" + 
+			"    \"passwd\": \"user2\",\n" + 
+			"    \"rol\": \"usuario\",\n" + 
+			"    \"nombre\": \"user2\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"email\": \"user3@dominio.com\",\n" + 
+			"    \"passwd\": \"user3\",\n" + 
+			"    \"rol\": \"usuario\",\n" + 
+			"    \"nombre\": \"user3\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"email\": \"user4@dominio.com\",\n" + 
+			"    \"passwd\": \"user4\",\n" + 
+			"    \"rol\": \"usuario\",\n" + 
+			"    \"nombre\": \"user4\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"email\": \"user5@dominio.com\",\n" + 
+			"    \"passwd\": \"user5\",\n" + 
+			"    \"rol\": \"usuario\",\n" + 
+			"    \"nombre\": \"user5\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"email\": \"user6@dominio.com\",\n" + 
+			"    \"passwd\": \"user6\",\n" + 
+			"    \"rol\": \"usuario\",\n" + 
+			"    \"nombre\": \"user6\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"email\": \"user7@dominio.com\",\n" + 
+			"    \"passwd\": \"user7\",\n" + 
+			"    \"rol\": \"usuario\",\n" + 
+			"    \"nombre\": \"user7\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"email\": \"user8@dominio.com\",\n" + 
+			"    \"passwd\": \"user8\",\n" + 
+			"    \"rol\": \"usuario\",\n" + 
+			"    \"nombre\": \"user8\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"email\": \"user9@dominio.com\",\n" + 
+			"    \"passwd\": \"user9\",\n" + 
+			"    \"rol\": \"usuario\",\n" + 
+			"    \"nombre\": \"user9\"\n" + 
+			"  }\n" + 
+			"  ],\n" + 
+			"  \"publicaciones\": [\n" + 
+			"  {\n" + 
+			"    \"email\": \"user1@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 1 user 1\",\n" + 
+			"    \"texto\": \"Texto publicacion 1 user1\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"email\": \"user1@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 2 user 1\",\n" + 
+			"    \"texto\": \"Texto publicacion 2 user1\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"email\": \"user1@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 3 user 1\",\n" + 
+			"    \"texto\": \"Texto publicacion 3 user1\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"email\": \"user2@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 1 user 2\",\n" + 
+			"    \"texto\": \"Texto publicacion 1 user2\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"email\": \"user2@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 2 user 2\",\n" + 
+			"    \"texto\": \"Texto publicacion 2 user 2\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"email\": \"user2@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 3 user 2\",\n" + 
+			"    \"texto\": \"Texto publicacion 3 user 2\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"email\": \"user3@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 1 user 3\",\n" + 
+			"    \"texto\": \"Texto publicacion 1 user 3\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"email\": \"user3@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 2 user 3\",\n" + 
+			"    \"texto\": \"Texto publicacion 2 user 3\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"    {\n" + 
+			"    \"email\": \"user3@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 3 user 3\",\n" + 
+			"    \"texto\": \"Texto publicacion 3 user 3\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"    {\n" + 
+			"    \"email\": \"user4@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 1 user 4\",\n" + 
+			"    \"texto\": \"Texto publicacion 1 user 4\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"    {\n" + 
+			"    \"email\": \"user4@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 2 user 4\",\n" + 
+			"    \"texto\": \"Texto publicacion 2 user 4\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"    {\n" + 
+			"    \"email\": \"user4@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 3 user 4\",\n" + 
+			"    \"texto\": \"Texto publicacion 3 user 4\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"    {\n" + 
+			"    \"email\": \"user5@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 1 user 5\",\n" + 
+			"    \"texto\": \"Texto publicacion 1 user 5\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"    {\n" + 
+			"    \"email\": \"user5@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 2 user 5\",\n" + 
+			"    \"texto\": \"Texto publicacion 2 user 5\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"    {\n" + 
+			"    \"email\": \"user5@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 3 user 5\",\n" + 
+			"    \"texto\": \"Texto publicacion 3 user 5\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"email\": \"user6@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 1 user 6\",\n" + 
+			"    \"texto\": \"Texto publicacion 1 user 6\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"email\": \"user6@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 2 user 6\",\n" + 
+			"    \"texto\": \"Texto publicacion 2 user 6\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"email\": \"user6@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 3 user 6\",\n" + 
+			"    \"texto\": \"Texto publicacion 3 user 6\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"email\": \"user7@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 1 user 7\",\n" + 
+			"    \"texto\": \"Texto publicacion 1 user 7\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"email\": \"user7@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 2 user 7\",\n" + 
+			"    \"texto\": \"Texto publicacion 2 user 7\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"email\": \"user7@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 3 user 7\",\n" + 
+			"    \"texto\": \"Texto publicacion 3 user 7\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"email\": \"user8@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 1 user 8\",\n" + 
+			"    \"texto\": \"Texto publicacion 1 user 8\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"email\": \"user8@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 2 user 8\",\n" + 
+			"    \"texto\": \"Texto publicacion 2 user 8\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"email\": \"user8@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 3 user 8\",\n" + 
+			"    \"texto\": \"Texto publicacion 3 user 8\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"email\": \"user9@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 1 user 9\",\n" + 
+			"    \"texto\": \"Texto publicacion 1 user 9\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"email\": \"user9@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 2 user 9\",\n" + 
+			"    \"texto\": \"Texto publicacion 2 user 9\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"email\": \"user9@dominio.com\",\n" + 
+			"    \"titulo\": \"Publicacion 3 user 9\",\n" + 
+			"    \"texto\": \"Texto publicacion 3 user 9\",\n" + 
+			"    \"fecha\": \"1542116773\"\n" + 
+			"  }\n" + 
+			"  ],\n" + 
+			" \"amigos\":  \n" + 
+			" [\n" + 
+			"  {\n" + 
+			"    \"emailusuario\": \"user1@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user2@dominio.com\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"emailusuario\": \"user1@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user3@dominio.com\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"emailusuario\": \"user1@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user4@dominio.com\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"emailusuario\": \"user2@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user3@dominio.com\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"emailusuario\": \"user2@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user4@dominio.com\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"emailusuario\": \"user2@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user5@dominio.com\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"emailusuario\": \"user3@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user4@dominio.com\"\n" + 
+			"  },\n" + 
+			"  {\n" + 
+			"    \"emailusuario\": \"user3@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user5@dominio.com\"\n" + 
+			"  },\n" + 
+			"    {\n" + 
+			"    \"emailusuario\": \"user3@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user6@dominio.com\"\n" + 
+			"  },\n" + 
+			"    {\n" + 
+			"    \"emailusuario\": \"user4@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user5@dominio.com\"\n" + 
+			"  },\n" + 
+			"    {\n" + 
+			"    \"emailusuario\": \"user4@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user6@dominio.com\"\n" + 
+			"  },\n" + 
+			"    {\n" + 
+			"    \"emailusuario\": \"user4@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user7@dominio.com\"\n" + 
+			"  },\n" + 
+			"    {\n" + 
+			"    \"emailusuario\": \"user5@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user6@dominio.com\"\n" + 
+			"  },\n" + 
+			"    {\n" + 
+			"    \"emailusuario\": \"user5@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user7@dominio.com\"\n" + 
+			"  },\n" + 
+			"    {\n" + 
+			"    \"emailusuario\": \"user5@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user8@dominio.com\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"emailusuario\": \"user6@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user7@dominio.com\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"emailusuario\": \"user6@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user8@dominio.com\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"emailusuario\": \"user6@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user9@dominio.com\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"emailusuario\": \"user7@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user1@dominio.com\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"emailusuario\": \"user7@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user2@dominio.com\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"emailusuario\": \"user7@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user3@dominio.com\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"emailusuario\": \"user8@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user1@dominio.com\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"emailusuario\": \"user8@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user2@dominio.com\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"emailusuario\": \"user8@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user3@dominio.com\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"emailusuario\": \"user9@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user1@dominio.com\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"emailusuario\": \"user9@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user2@dominio.com\"\n" + 
+			"  },\n" + 
+			"      {\n" + 
+			"    \"emailusuario\": \"user9@dominio.com\",\n" + 
+			"    \"emailamigo\": \"user3@dominio.com\"\n" + 
+			"  }\n" + 
+			" ] \n" + 
+			" }\n" + 
+			"  \n" + 
+			"";
+	
 }
