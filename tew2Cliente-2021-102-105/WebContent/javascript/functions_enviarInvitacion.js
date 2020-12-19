@@ -63,7 +63,7 @@ function View()
 	 this.list = function (lista) 
 	 {
 		 $("#tablaUsuarios").html("");
-		 $("#tablaUsuarios").html( "<thead>" + "<tr>" + "<th>E-mail</th>" + "<th>Nombre</th>" + "<th>Rol</th>" + "<th>Agregar Amigo</th>" + "</tr>" + "</thead>" + "<tbody>" + "</tbody>");
+		 $("#tablaUsuarios").html( "<thead class='thead-green'>" + "<tr>" + "<th>E-mail</th>" + "<th>Nombre</th>" + "<th>Rol</th>" + "<th>Agregar</th>" + "</tr>" + "</thead>" + "<tbody>" + "</tbody>");
 		 
 		 for ( var i in lista) 
 		 {
