@@ -8,13 +8,15 @@ import com.tew.persistence.exception.NotPersistedException;
 
 
 @Path("/AdministradorServicesRs")
-public interface AdministradorServicesRs extends AdministradorService{
+public interface AdministradorServicesRs extends AdministradorService
+{
 	
 	@DELETE
-	@Path("{a}")
+	@Path("{a}/{N}/{T}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	void borrarUsarios(@PathParam("a") List<String> a)  throws NotPersistedException;
+	void borrarUsarios(@PathParam("a") List<String> a, @PathParam("N") String N, @PathParam("T") String T)  throws NotPersistedException;
 	
 	@POST
-	void reiniciarBD() throws Exception;
+	@Path("{N}/{T}")
+	void reiniciarBD(@PathParam("N") String N, @PathParam("T") String T) throws Exception;
 }

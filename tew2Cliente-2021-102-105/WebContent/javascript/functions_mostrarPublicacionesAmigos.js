@@ -1,13 +1,18 @@
-$(function() {
-	 // Creamos el modelo con los datos y la conexión al servicio web.
-	 var model = new Model();
-	 // Creamos la vista que incluye acceso al modelo.
-	 var view = new View();
-	 // Creamos el controlador
-	 var control = new Controller(model, view);
-	 // Iniciamos la aplicación
-	 control.init();
-}); 
+$(function() 
+		{
+	if(sessionStorage.getItem('token')!=null && sessionStorage.getItem('usuario')!=null)
+	{
+		var model = new Model();
+		var view = new View();
+		var control = new Controller(model, view);
+		control.init();
+	}
+	else
+	{
+		alert("Usted no se ha autenticado");
+		window.location.href="inicioSesion.html";
+	}
+		}); 
 
 
 //Clase que contiene el Modelo de la aplicación.
@@ -16,8 +21,11 @@ function Model(){
 	this.tbPublicaciones = null;
 	
 	// Carga los datos del servicio sobreescribiendo el dato this.tbAlumnos.
-	 this.load = function(email_user) {
-		 this.tbPublicaciones = PublicacionesServicesRs.getPublicacionesAmigos({email : email_user,$contentType : "application/json"});
+	 this.load = function(email_user) 
+	 {
+		 var email = sessionStorage.getItem("usuario");
+		 var token = sessionStorage.getItem("token");
+		 this.tbPublicaciones = PublicacionesServicesRs.getPublicacionesAmigos({email : email_user, N : email, T : token,$contentType : "application/json"});
 		 
 	 }
 	 
@@ -51,7 +59,7 @@ function Controller(varmodel, varview) {
 	 // Funcion de inicialización para cargar modelo y vista, definición de manejadores
 	 this.init = function() {
 		 
-		 this.model.load("user2@email.es");
+		 this.model.load(sessionStorage.getItem("usuario"));
 		 
 		 this.view.list(this.model.tbPublicaciones);
 

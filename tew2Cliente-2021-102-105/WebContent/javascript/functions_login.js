@@ -12,7 +12,7 @@ function Model()
 	{
 	 	   var usuario = LoginServicesRs.verify({name : user, password : pass, $contentType : "application/json"});   
 	 	   console.log(usuario);
-	       if(usuario != null)
+	       if(usuario.rol != undefined)
 	       {
 	    	   console.log("El usuario no era null");
 	    	   console.log(usuario.rol);
@@ -37,14 +37,25 @@ function Controller(varmodel)
 		{
 			var user=$("#username").val();
 			var pass=$("#passwd").val();
-		    if (that.model.comprueba(user,pass) == true)
-		    {	
-		    	window.location.href="inicioSesion.html";	
-		    }
-		    else
-		    {
-		    	alert("Usuario y Contrasena no validos");
-		    }
+			if (that.model.comprueba(user,pass) == true)
+			{	
+				console.log(sessionStorage.getItem("token"));
+				if(sessionStorage.getItem("token") == "usuario")
+				{
+					console.log("Intentamos que opcionesUsuario pase");
+					window.location.href="opcionesUsuario.html";
+				}
+				else
+				{
+					console.log("Intentamos que opcionesAdministrador pase");
+					window.location.href="opcionesAdministrador.html";
+				}
+
+			}
+			else
+			{
+				alert("Usuario y Contraseña no validos");
+			}
 		    	
 		    
 		});

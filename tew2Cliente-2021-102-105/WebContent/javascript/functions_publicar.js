@@ -1,24 +1,29 @@
-$(function() {
-	 // Creamos el modelo con los datos y la conexión al servicio web.
-	 var model = new Model();
-	 // Creamos la vista que incluye acceso al modelo.
-	 var view = new View();
-	 // Creamos el controlador
-	 var control = new Controller(model, view);
-	 // Iniciamos la aplicación
-	 control.init();
-}); 
+$(function()
+		{
+	if(sessionStorage.getItem('token')!=null && sessionStorage.getItem('usuario')!=null)
+	{
+		var model = new Model();
+		var view = new View();
+		var control = new Controller(model, view);
+		control.init();
+	}
+	else
+	{
+		alert("Usted no se ha autenticado");
+		window.location.href="inicioSesion.html";
+	}
+		}); 
 
 
 //Clase que contiene el Modelo de la aplicación.
-function Model(){
+function Model()
+{
 	
-	 
-	 
-	 this.add = function(publicacion) {
-		 
-		 PublicacionesServicesRs.savePublicacion({$entity : publicacion,$contentType : "application/json"});
-		 
+	 this.add = function(publicacion) 
+	 {	 
+		 var email = sessionStorage.getItem("usuario");
+		 var token = sessionStorage.getItem("token");
+		 PublicacionesServicesRs.savePublicacion({$entity : publicacion, N : email, T : token,$contentType : "application/json"});
 		 this.load();
 	 }
 	

@@ -1,4 +1,5 @@
 package impl.tew.business.resteasy;
+import com.tew.business.resteasy.AlmacenServidor;
 import com.tew.business.resteasy.AmigosServicesRs;
 import java.util.List;
 import com.tew.business.exception.EntityAlreadyExistsException;
@@ -15,51 +16,96 @@ public class AmigosServicesRsImpl implements AmigosServicesRs
 {
 
 	@Override
-	public List<Amigos> getAmigosLista()
+	public List<Amigos> getAmigosLista(String N, String T)
 	{
-		try 
+		if(AlmacenServidor.getAlmacen().autentica(N,T))
 		{
-			return new AmigosListaListado().getAmigosLista();
-		} 
-		
-		catch (Exception e) 
+			try 
+			{
+				return new AmigosListaListado().getAmigosLista();
+			} 
+
+			catch (Exception e) 
 			{
 				e.printStackTrace();
 				return null;
 			}
+		}
+		else
+		{
+			System.out.println("Este usuario no se ha autenticado");
+			return null;
+		}
 	}
 
 	@Override
-	public Amigos find(String a, String b) throws EntityNotFoundException 
+	public Amigos find(String a, String b,String N, String T) throws EntityNotFoundException 
 	{
-		Amigos amigos = new Amigos(a,b,true);
-		System.out.println(a + " " + b);
-		return new AmigosListaBuscar().find(amigos);
+		if(AlmacenServidor.getAlmacen().autentica(N,T))
+		{
+			Amigos amigos = new Amigos(a,b,true);
+			System.out.println(a + " " + b);
+			return new AmigosListaBuscar().find(amigos);
+		}
+		else
+		{
+			System.out.println("Este usuario no se ha autenticado");
+			return null;
+		}
 	}
 
 	@Override
-	public void deleteAmigos(String a, String b) throws EntityNotFoundException
+	public void deleteAmigos(String a, String b,String N, String T) throws EntityNotFoundException
 	{
-		Amigos amigos = new Amigos(a,b,true);
-		new AmigosListaBaja().delete(amigos);
+		if(AlmacenServidor.getAlmacen().autentica(N,T))
+		{
+			Amigos amigos = new Amigos(a,b,true);
+			new AmigosListaBaja().delete(amigos);
+		}
+		else
+		{
+			System.out.println("Este usuario no se ha autenticado");
+		}
 	}
 
 	@Override
-	public void saveAmigos(Amigos amigos) throws EntityAlreadyExistsException 
+	public void saveAmigos(Amigos amigos,String N, String T) throws EntityAlreadyExistsException 
 	{
-		new AmigosListaAlta().save(amigos);
+		if(AlmacenServidor.getAlmacen().autentica(N,T))
+		{
+			new AmigosListaAlta().save(amigos);
+		}
+		else
+		{
+			System.out.println("Este usuario no se ha autenticado");
+		}
 	}
 
 	@Override
-	public void updateAmigos(Amigos amigos) throws EntityNotFoundException 
+	public void updateAmigos(Amigos amigos,String N, String T) throws EntityNotFoundException 
 	{
-		new AmigosListaUpdate().update(amigos);
+		if(AlmacenServidor.getAlmacen().autentica(N,T))
+		{
+			new AmigosListaUpdate().update(amigos);
+		}
+		else
+		{
+			System.out.println("Este usuario no se ha autenticado");
+		}
 	}
 
 	@Override
-	public List<Amigos> getListadoPeticiones(String email) 
+	public List<Amigos> getListadoPeticiones(String email,String N, String T) 
 	{
-		return new AmigosListaListado().getAmigosListaPeticiones(email);
+		if(AlmacenServidor.getAlmacen().autentica(N,T))
+		{
+			return new AmigosListaListado().getAmigosListaPeticiones(email);
+		}
+		else
+		{
+			System.out.println("Este usuario no se ha autenticado");
+			return null;
+		}
 	}
 
 	@Override
@@ -71,7 +117,31 @@ public class AmigosServicesRsImpl implements AmigosServicesRs
 	@Override
 	public void deleteAmigos(Amigos amigos) throws EntityNotFoundException 
 	{
-		
+
 	}
-	
+
+	@Override
+	public List<Amigos> getAmigosLista() throws Exception 
+	{
+		return null;
+	}
+
+	@Override
+	public void saveAmigos(Amigos amigos) throws EntityAlreadyExistsException 
+	{
+
+	}
+
+	@Override
+	public void updateAmigos(Amigos amigos) throws EntityNotFoundException 
+	{
+
+	}
+
+	@Override
+	public List<Amigos> getListadoPeticiones(String email) 
+	{
+		return null;
+	}
+
 }

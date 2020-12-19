@@ -21,14 +21,14 @@ public interface LoginServicesRs extends LoginService
 	void registry(Usuario usuarioRegistrar);
 	
 	@GET
-	@Path("compruebaExiste/{emailRegistrado}")
+	@Path("compruebaExiste/{emailRegistrado}/{N}/{T}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	Usuario compruebaExiste(@PathParam("emailRegistrado") String emailRegistrado);
+	Usuario compruebaExiste(@PathParam("emailRegistrado") String emailRegistrado, @PathParam("N") String N, @PathParam("T") String T);
 
 	@GET
-	@Path("validLogin/{name}/{password}")
+	@Path("validLogin/{name}/{password}/{N}/{T}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	boolean validLogin(String name, String password);
+	boolean validLogin(@PathParam("name") String name, @PathParam("password") String password, @PathParam("N") String N, @PathParam("T") String T);
 	
 	@DELETE
 	@Path("logout/{N}/{T}")

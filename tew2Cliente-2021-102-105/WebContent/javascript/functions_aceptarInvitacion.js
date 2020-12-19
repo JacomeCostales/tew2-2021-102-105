@@ -1,10 +1,18 @@
 $(function() 
-{
-	 var model = new Model();
-	 var view = new View();
-	 var control = new Controller(model, view);
-	 control.init();
-}); 
+		{
+	if(sessionStorage.getItem('token')!=null && sessionStorage.getItem('usuario')!=null)
+	{
+		var model = new Model();
+		var view = new View();
+		var control = new Controller(model, view);
+		control.init();
+	}
+	else
+	{
+		alert("Usted no se ha autenticado");
+		window.location.href="inicioSesion.html";
+	}
+		}); 
 
 
 function Model()
@@ -13,7 +21,9 @@ function Model()
 	 this.load = function(emailUsuario) 
 	 {
 		 console.log(emailUsuario);
-		 this.tablaPeticiones = UsuariosServicesRs.getListadoPeticiones({email : emailUsuario, $contentType : "application/json"});	 
+		 var email = sessionStorage.getItem("usuario");
+		 var token = sessionStorage.getItem("token");
+		 this.tablaPeticiones = UsuariosServicesRs.getListadoPeticiones({email : emailUsuario,N : email, T : token, $contentType : "application/json"});	 
 	 }
 	 
 	 this.obtenerPeticionAceptar = function(lista, celda) 
@@ -46,7 +56,9 @@ function Model()
 		
 	this.aceptarAmigo = function(amigo) 
 	{
-		AmigosServicesRs.updateAmigos({$entity : amigo, $contentType : "application/json"});
+		var email = sessionStorage.getItem("usuario");
+		var token = sessionStorage.getItem("token");
+		AmigosServicesRs.updateAmigos({$entity : amigo,N : email, T : token, $contentType : "application/json"});
 	}
 };
 

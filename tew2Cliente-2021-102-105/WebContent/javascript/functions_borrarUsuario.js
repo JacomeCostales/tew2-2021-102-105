@@ -1,13 +1,18 @@
-$(function() {
-	 // Creamos el modelo con los datos y la conexión al servicio web.
-	 var model = new Model();
-	 // Creamos la vista que incluye acceso al modelo.
-	 var view = new View();
-	 // Creamos el controlador
-	 var control = new Controller(model, view);
-	 // Iniciamos la aplicación
-	 control.init();
-}); 
+$(function() 
+		{
+	if(sessionStorage.getItem('token')!=null && sessionStorage.getItem('usuario')!=null)
+	{
+		var model = new Model();
+		var view = new View();
+		var control = new Controller(model, view);
+		control.init();
+	}
+	else
+	{
+		alert("Usted no se ha autenticado");
+		window.location.href="inicioSesion.html";
+	}
+		}); 
 
 
 //Clase que contiene el Modelo de la aplicación.
@@ -16,8 +21,11 @@ function Model(){
 	this.listUsuarios = null;
 	
 	// Carga los datos del servicio sobreescribiendo el dato this.tbAlumnos.
-	 this.load = function() {
-		 this.listUsuarios = UsuariosServicesRs.getUsuarios();
+	 this.load = function() 
+	 {
+		 var email = sessionStorage.getItem("usuario");
+		 var token = sessionStorage.getItem("token");
+		 this.listUsuarios = UsuariosServicesRs.getUsuarios({N : email, T : token});
 	 }
 	 
 	 
@@ -30,8 +38,11 @@ function Model(){
 		 
 		 $("input:checkbox").each(function() {
 			    
-			 if($(this).prop('checked')){
-				 AdministradorServicesRs.borrarUsarios({a: [$(this).val()],$contentType : "application/json"});
+			 if($(this).prop('checked'))
+			 {
+				 var email = sessionStorage.getItem("usuario");
+				 var token = sessionStorage.getItem("token");
+				 AdministradorServicesRs.borrarUsarios({a: [$(this).val()],N : email, T : token,$contentType : "application/json"});
 				 
 			 };
 			 

@@ -11,30 +11,33 @@ import com.tew.model.Amigos;
 public interface AmigosServicesRs extends AmigosListaService
 {
 	 @GET
+	 @Path("getAmigosLista/{N}/{T}")
 	 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	 public List<Amigos> getAmigosLista() throws Exception; 
+	 public List<Amigos> getAmigosLista(@PathParam("N") String N, @PathParam("T") String T) throws Exception; 
 	 
 	 @GET
-	 @Path("find/{a}/{b}")
+	 @Path("find/{a}/{b}/{N}/{T}")
 	 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	 Amigos find(@PathParam("a") String a, @PathParam("b") String b) throws EntityNotFoundException;
+	 Amigos find(@PathParam("a") String a, @PathParam("b") String b, @PathParam("N") String N, @PathParam("T") String T) throws EntityNotFoundException;
 	 
 	 
 	 @DELETE
-	 @Path("deleteAmigos/{a}/{b}")
-	 void deleteAmigos(@PathParam("a") String a, @PathParam("b") String b) throws EntityNotFoundException;
+	 @Path("deleteAmigos/{a}/{b}/{N}/{T}")
+	 void deleteAmigos(@PathParam("a") String a, @PathParam("b") String b, @PathParam("N") String N, @PathParam("T") String T) throws EntityNotFoundException;
 	 
 	 @PUT
+	 @Path("saveAmigos/{N}/{T}")
 	 @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	 void saveAmigos(Amigos amigos) throws EntityAlreadyExistsException;
+	 void saveAmigos(Amigos amigos, @PathParam("N") String N, @PathParam("T") String T) throws EntityAlreadyExistsException;
 	 
 	 @POST
+	 @Path("updateAmigos/{N}/{T}")
 	 @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	 void updateAmigos(Amigos amigos) throws EntityNotFoundException;
+	 void updateAmigos(Amigos amigos, @PathParam("N") String N, @PathParam("T") String T) throws EntityNotFoundException;
 
 	 @GET
-	 @Path("getListadoPeticiones/{email}")
+	 @Path("getListadoPeticiones/{email}/{N}/{T}")
 	 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	 public List<Amigos> getListadoPeticiones(@PathParam("email")String email);
+	 public List<Amigos> getListadoPeticiones(@PathParam("email")String email ,@PathParam("N") String N, @PathParam("T") String T);
 	 
 }

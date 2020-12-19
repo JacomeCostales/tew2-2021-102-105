@@ -15,12 +15,21 @@ public class LoginServicesRsImpl implements LoginServicesRs
 		User usuario = new SimpleLoginService().verify(name, password);
 		if(usuario != null)AlmacenServidor.getAlmacen().getUsuariosLogged().add(usuario);
 		return usuario;
+		
 	}
 
 	@Override
-	public boolean validLogin(String name, String password) 
+	public boolean validLogin(String name, String password, String N, String T) 
 	{
-		return new SimpleLoginService().validLogin(name, password);
+		if(AlmacenServidor.getAlmacen().autentica(N,T))
+		{
+			return new SimpleLoginService().validLogin(name, password);
+		}
+		else
+		{
+			System.out.println("Este usuario no se ha autenticado");
+			return false;
+		}
 	}
 	@Override
 	public void registry(Usuario usuarioRegistrar) 
@@ -29,9 +38,17 @@ public class LoginServicesRsImpl implements LoginServicesRs
 	}
 
 	@Override
-	public Usuario compruebaExiste(String emailRegistrado) 
+	public Usuario compruebaExiste(String emailRegistrado, String N, String T) 
 	{
-		return new SimpleLoginService().compruebaExiste(emailRegistrado);
+		if(AlmacenServidor.getAlmacen().autentica(N,T))
+		{
+			return new SimpleLoginService().compruebaExiste(emailRegistrado);
+		}
+		else
+		{
+			System.out.println("Este usuario no se ha autenticado");
+			return null;
+		}
 	}
 
 	@Override
@@ -48,5 +65,12 @@ public class LoginServicesRsImpl implements LoginServicesRs
 			System.out.println("Error al intentar hacer logout");
 		}
 	}
+
+	@Override
+	public Usuario compruebaExiste(String emailRegistrado) 
+	{
+		return null;
+	}
+
 
 }

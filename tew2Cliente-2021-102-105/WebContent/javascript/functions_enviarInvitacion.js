@@ -10,7 +10,7 @@ $(function()
 	else
 	{
 		alert("Usted no se ha autenticado");
-		window.location.href="login.html";
+		window.location.href="inicioSesion.html";
 	}
 	
 }); 
@@ -22,7 +22,9 @@ function Model()
 	 this.load = function(emailUsuario) 
 	 {
 		 console.log(emailUsuario);
-		 this.tablaUsuarios = UsuariosServicesRs.listadoEnvios({email : emailUsuario, $contentType : "application/json"});	 
+		 var email = sessionStorage.getItem("usuario");
+		 var token = sessionStorage.getItem("token");
+		 this.tablaUsuarios = UsuariosServicesRs.listadoEnvios({email : emailUsuario, N : email, T : token, $contentType : "application/json"});	 
 	 }
 	 
 	this.createAmigo = function(emailUsuario, emailAmigo) 
@@ -38,7 +40,9 @@ function Model()
 		
 	this.agregarAmigo = function(amigo) 
 	{
-		AmigosServicesRs.saveAmigos({$entity : amigo, $contentType : "application/json"});
+		var email = sessionStorage.getItem("usuario");
+		var token = sessionStorage.getItem("token");
+		AmigosServicesRs.saveAmigos({$entity : amigo, N : email, T : token, $contentType : "application/json"});
 	}
 };
 

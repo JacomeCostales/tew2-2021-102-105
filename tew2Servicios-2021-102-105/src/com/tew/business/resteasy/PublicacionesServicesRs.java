@@ -12,28 +12,31 @@ import com.tew.model.Publicacion;
 public interface PublicacionesServicesRs extends PublicacionesService {
 
 	@GET
-	@Path("{email}/{order}")
+	@Path("{email}/{order}/{N}/{T}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	List<Publicacion> getPublicacionesPropias(@PathParam("email") String email,@PathParam("order") String order) throws Exception;
+	List<Publicacion> getPublicacionesPropias(@PathParam("email") String email,@PathParam("order") String order, @PathParam("N") String N, @PathParam("T") String T) throws Exception;
 	
 	@GET
-	@Path("{email}")
+	@Path("{email}/{N}/{T}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	List<Publicacion> getPublicacionesAmigos(@PathParam("email") String email) throws Exception;
+	List<Publicacion> getPublicacionesAmigos(@PathParam("email") String email, @PathParam("N") String N, @PathParam("T") String T) throws Exception;
 	
 	@GET
-	@Path("{id}")
+	@Path("{id}/{N}/{T}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	Publicacion findById(@PathParam("id") int id) throws EntityNotFoundException;
+	Publicacion findById(@PathParam("id") int id, @PathParam("N") String N, @PathParam("T") String T) throws EntityNotFoundException;
 	
 	@PUT
+	@Path("{N}/{T}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	void savePublicacion(Publicacion publicacion) throws EntityAlreadyExistsException;
+	void savePublicacion(Publicacion publicacion, @PathParam("N") String N, @PathParam("T") String T) throws EntityAlreadyExistsException;
 	
 	@POST
+	@Path("{N}/{T}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	void updatePublicacion(Publicacion publicacion) throws EntityNotFoundException;
+	void updatePublicacion(Publicacion publicacion, @PathParam("N") String N, @PathParam("T") String T) throws EntityNotFoundException;
 	
 	@DELETE
-	void deletePublicacion(int id) throws EntityNotFoundException;
+	@Path("{N}/{T}")
+	void deletePublicacion(int id, @PathParam("N") String N, @PathParam("T") String T) throws EntityNotFoundException;
 }

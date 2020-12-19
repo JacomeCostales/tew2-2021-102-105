@@ -18,38 +18,41 @@ import com.tew.model.Usuario;
 public interface UsuariosServicesRs extends UsuariosService
 {
 	@GET
+	@Path("getUsuarios/{N}/{T}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	List<Usuario> getUsuarios() throws Exception;
+	List<Usuario> getUsuarios(@PathParam("N") String N, @PathParam("T") String T) throws Exception;
 	
 	@GET
-	@Path("findByEmail/{email}")
+	@Path("findByEmail/{email}/{N}/{T}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	Usuario findByEmail(@PathParam("email") String email) throws EntityNotFoundException;
+	Usuario findByEmail(@PathParam("email") String email, @PathParam("N") String N, @PathParam("T") String T) throws EntityNotFoundException;
 	
 	@PUT
+	@Path("saveUsuario/{N}/{T}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	void saveUsuario(Usuario usuario) throws EntityAlreadyExistsException;
+	void saveUsuario(Usuario usuario, @PathParam("N") String N, @PathParam("T") String T) throws EntityAlreadyExistsException;
 	
 	@POST
+	@Path("updateUsuario/{N}/{T}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	void updateUsuario(Usuario usuario) throws EntityNotFoundException;
+	void updateUsuario(Usuario usuario, @PathParam("N") String N, @PathParam("T") String T) throws EntityNotFoundException;
 	
 	@DELETE
-	@Path("deleteUsuario/{email}")
-	void deleteUsuario(@PathParam("email") String email) throws EntityNotFoundException;
+	@Path("deleteUsuario/{email}/{N}/{T}")
+	void deleteUsuario(@PathParam("email") String email, @PathParam("N") String N, @PathParam("T") String T) throws EntityNotFoundException;
 	
 	@GET
-	@Path("getUsuariosFiltrados/{a}/{b}")
+	@Path("getUsuariosFiltrados/{a}/{b}/{N}/{T}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	List<Usuario> getUsuariosFiltrados(@PathParam("a") String a, @PathParam("b") String b) throws Exception;
+	List<Usuario> getUsuariosFiltrados(@PathParam("a") String a, @PathParam("b") String b, @PathParam("N") String N, @PathParam("T") String T) throws Exception;
 	
 	@GET
-	@Path("getListadoPeticiones/{email}")
+	@Path("getListadoPeticiones/{email}/{N}/{T}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	List<Usuario> getListadoPeticiones(@PathParam("email") String email);
+	List<Usuario> getListadoPeticiones(@PathParam("email") String email, @PathParam("N") String N, @PathParam("T") String T);
 	
 	@GET
-	@Path("listadoEnvios/{email}")
+	@Path("listadoEnvios/{email}/{N}/{T}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	List<Usuario> listadoEnvios(@PathParam("email") String email);
+	List<Usuario> listadoEnvios(@PathParam("email") String email, @PathParam("N") String N, @PathParam("T") String T);
 }
