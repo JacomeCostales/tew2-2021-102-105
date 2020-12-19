@@ -35,14 +35,14 @@ function View(){
 	 
 	 this.loadPublicacionFromForm = function () {
 		 
-		 var fecha_actual = new Date();
+		 var fecha_actual = (Date.now())/1000;
 		 var id_asig = Math.floor(Math.random() * 1000000); 
 		 var publicacion = {
 				 id : id_asig,
 				 email : sessionStorage.getItem('usuario'),
 				 titulo : $("#titulo").val(),
 				 texto : $("#texto").val(),
-				 fecha_format : fecha_actual
+				 fecha : fecha_actual
 				 };
 		 return publicacion;
 		 

@@ -40,7 +40,9 @@ function View(){
 		 
 		 for ( var i in lista) {
 			 var publicacion = lista[i];
-			 $("#tblPublicacionesAmigos tbody").append("<tr> <td>" + publicacion.id + "</td>" + "<td>" + publicacion.email + "</td>" + "<td>" + publicacion.titulo + "</td>" + "<td>" + publicacion.texto + "</td>" + "<td>" + publicacion.fecha_format + "</td></tr>");
+			 var d = new Date(0); 
+			 d.setUTCSeconds(publicacion.fecha_format);
+			 $("#tblPublicacionesAmigos tbody").append("<tr> <td>" + publicacion.id + "</td>" + "<td>" + publicacion.email + "</td>" + "<td>" + publicacion.titulo + "</td>" + "<td>" + publicacion.texto + "</td>" + "<td>" + d + "</td></tr>");
 		 }
 	 } 
 	
