@@ -35,14 +35,16 @@ function Model(){
 //Clase que contiene la gestión de la capa Vista
 function View(){
 	 this.list = function (lista) {
-		 $("#tblPublicacionesAmigos").html("");
-		 $("#tblPublicacionesAmigos").html( "<thead>" + "<tr>" + "<th>ID</th>" + "<th>email</th>" + "<th>titulo</th>" + "<th>texto</th>" + "<th>Fecha</th>" + "</tr>" + "</thead>" + "<tbody>" + "</tbody>");
+		 
 		 
 		 for ( var i in lista) {
 			 var publicacion = lista[i];
 			 var d = new Date(0); 
 			 d.setUTCSeconds(publicacion.fecha_format);
-			 $("#tblPublicacionesAmigos tbody").append("<tr> <td>" + publicacion.id + "</td>" + "<td>" + publicacion.email + "</td>" + "<td>" + publicacion.titulo + "</td>" + "<td>" + publicacion.texto + "</td>" + "<td>" + d + "</td></tr>");
+			 $("#listaPublicacion").append("<div class='publicacion'>" +
+				 		"<h4 class='titulo-publicacion'>"+publicacion.titulo+"</h2>" +
+				 		"<p class='contenido-publicacion'> "+publicacion.texto+"</p>" +
+				 		"<p class='fecha-publicacion'>"+d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear()+"</p></div>");
 		 }
 	 } 
 	

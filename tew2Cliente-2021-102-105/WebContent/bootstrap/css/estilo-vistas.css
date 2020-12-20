@@ -7,3 +7,28 @@ section{
 	padding:0 0 0 30px;
 	
 }
+
+.publicacion {
+  border-radius: 10px ;
+  background-color: lightgrey;
+  width:95%; 
+}
+.titulo-publicacion {
+  text-align: left;
+  padding: 10px 0 0 20px;
+}
+.contenido-publicacion {
+  text-align: left;
+  padding: 0 0 0 20px;
+}
+.fecha-publicacion {
+  text-align: right;
+  padding: 0 20px 10px 0;
+}
+
+.usuarioBorrar{
+	
+	width:200px;
+	text-align:center;
+	padding: 10px;
+}

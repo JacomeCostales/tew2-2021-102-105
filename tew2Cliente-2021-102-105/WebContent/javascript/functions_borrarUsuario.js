@@ -64,7 +64,7 @@ function View(){
 		 for ( var i in lista) {
 			 var usuario = lista[i];
 			 if(usuario.rol!="admin"){
-				 $("#listaUsuarios").append("<input type='checkbox' id='usuario"+i+"' name='usuario"+i+"' value="+usuario.email+"><label for='usuario"+i+"'> "+usuario.email+"</label><br>");
+				 $("#listaUsuarios").append("<div class='usuarioBorrar'><input type='checkbox' id='usuario"+i+"' name='usuario"+i+"' value="+usuario.email+"><label for='usuario"+i+"'> "+usuario.email+"</label><br></div>");
 			 }
 		 }
 	 }
