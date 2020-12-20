@@ -103,20 +103,22 @@ public class UsuarioJdbcDao implements UsuarioDao {
 		Usuario usuario = null;
 		
 		try {
-			// En una implementaci��n m��s sofisticada estas constantes habr��a 
-			// que sacarlas a un sistema de configuraci��n: 
-			// xml, properties, descriptores de despliege, etc 
+			
 			String SQL_DRV = "org.hsqldb.jdbcDriver";
 			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
 
 			
+			String q = "select * from Usuarios where email = '"+email+"'";
+			
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
-			ps = con.prepareStatement("select * from Usuarios where email = ?");
-			ps.setString(1, email);
+			ps = con.prepareStatement(q);
 			
+						
 			rs = ps.executeQuery();
+			
 			if (rs.next()) {
+				
 				usuario = new Usuario();
 				usuario.setEmail(rs.getString("email"));
 				usuario.setPasswd(rs.getString("passwd"));

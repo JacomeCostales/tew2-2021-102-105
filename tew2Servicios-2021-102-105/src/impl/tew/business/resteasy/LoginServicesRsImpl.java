@@ -42,6 +42,7 @@ public class LoginServicesRsImpl implements LoginServicesRs
 	{
 		if(AlmacenServidor.getAlmacen().autentica(N,T))
 		{
+			
 			return new SimpleLoginService().compruebaExiste(emailRegistrado);
 		}
 		else

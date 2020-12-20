@@ -52,11 +52,15 @@ public class SimpleLoginService implements LoginService {
 	public Usuario compruebaExiste(String emailRegistrado) 
 	{
 		Usuario usu = null;
+		
 		try {
 			usu = new UsuariosBuscar().find(emailRegistrado);
+			System.out.println("Encontrado"+usu.getEmail());
 		} catch (EntityNotFoundException e) {
+			
 			return usu;
 		}
+		
 		return usu;
 		
 	}

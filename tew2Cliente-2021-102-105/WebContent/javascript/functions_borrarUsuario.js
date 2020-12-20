@@ -33,9 +33,7 @@ function Model(){
 	// Eliminación un alumno existente
 	 this.remove = function() {
 		
-		 
-
-		 
+		 var noBorrados = "";
 		 $("input:checkbox").each(function() {
 			    
 			 if($(this).prop('checked'))
@@ -44,6 +42,9 @@ function Model(){
 				 var token = sessionStorage.getItem("token");
 				 AdministradorServicesRs.borrarUsarios({a: [$(this).val()],N : email, T : token,$contentType : "application/json"});
 				 
+				 var u = LoginServicesRs.compruebaExiste({emailRegistrado:$(this).val(),N : email, T : token,$contentType : "application/json"});
+				 console.log(u);
+				 if(u){noBorrados+=u.email+"\n";}
 			 };
 			 
 			   });
@@ -51,6 +52,9 @@ function Model(){
 
 		 // Recargamos la lista de alumnos.
 		 this.load();
+		 if(noBorrados != ""){
+			 alert("Hay usuarios con la sesion abierta, no se les puede borrar\n"+noBorrados);
+		 }
 	 }
 	
 	
