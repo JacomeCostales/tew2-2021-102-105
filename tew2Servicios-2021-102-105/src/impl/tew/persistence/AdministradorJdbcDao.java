@@ -123,7 +123,7 @@ public class AdministradorJdbcDao implements AdministradorDao {
 		l.add("CREATE TABLE Usuarios (email varchar(100) PRIMARY KEY, passwd varchar(100) NOT NULL,rol varchar(20) not null,nombre varchar(100) not null);");
 		l.add("CREATE TABLE Publicacion (ID int PRIMARY KEY, email varchar(100) NOT NULL REFERENCES Usuarios (email),titulo varchar(20) not null,texto varchar(300) not null,fecha bigint not null);");
 		l.add("CREATE TABLE Amigos (email_usuario varchar(100) REFERENCES Usuarios (email), email_amigo varchar(100) REFERENCES Usuarios (email), aceptada boolean not null);");
-		l.add("INSERT INTO Usuarios (email, passwd, rol, nombre) VALUES ('admin@email.es', 'admin', 'admin', 'Administrador');");
+		l.add("INSERT INTO Usuarios (email, passwd, rol, nombre) VALUES ('admin@dominio.com', 'admin', 'admin', 'Administrador');");
 		return l;
 	}
 	
