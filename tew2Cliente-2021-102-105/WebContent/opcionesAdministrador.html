@@ -33,10 +33,10 @@
 		***************************************************
 		-->
 		<div class="row" style="height:15%">
-			<ul>
-				<li><a href="borrarUsuarios.html" target="formulario"><i class="fa fa-ban" aria-hidden="true"></i></a></li>
-				<li><a href="" target="formulario"><i class="fa fa-spinner" aria-hidden="true"></i></a></li>
-				<li><a href="index.html" id ="botonLogout"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+			<ul class="col" style="margin: 0 25%;">
+				<li style="margin: 0 7%;"><a href="borrarUsuarios.html" target="formulario"><i class="fa fa-ban" aria-hidden="true"></i></a></li>
+				<li style="margin: 0 7%;"><a href="" target="formulario"><i class="fa fa-spinner" aria-hidden="true"></i></a></li>
+				<li style="margin: 0 7%;"><a href="index.html" id ="botonLogout"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
 			</ul>
 		</div>
 		
@@ -48,7 +48,7 @@
 	-->
 	<div class="row" style="height:60%">
 			<div class="col-md-9" style="position:relative;width:100%;height:100%;">
-				<iframe name="formulario" src="" frameBorder="0" style="position:relative;width:100%;height:95%;"></iframe>
+				<div style="border-radius: 30px;overflow: hidden;"><iframe name="formulario" src="" frameBorder="0" style="position:relative;width:100%;height:95%;"></iframe></div>
 			</div>
 
 
@@ -57,21 +57,16 @@
 	* ELEMENTO LATERAL INFORMATIVO ********************
 	***************************************************
 	-->
-			<div class="col-md-3 bg-info" style="position:relative;width:70%;height:95%;">
+			<div class="col-md-3" style="position:relative;width:70%;height:95%;background-color:white;border-radius: 30px;padding: 10% 1%;">
 				<aside>
 					<header>
-						<h2>Proyecto Red Social</h2>
+						<h2 style="font-weight:800">Administrador</h2>
 					</header>
-					<p>En este proyecto se incorporan las siguientes características:
+					<p>Funciones
 					<ol>
 						<li>Autenticación</li>
 						<li>Logout</li>
-						<li>Crear nuevas publicaciones</li>
-						<li>Listar mis publicaciones</li>
-						<li>Enviar invitaciones de amistad a otros usuarios</li>
-						<li>Listado de las invitaciones de amistad recibidas y aceptar una invitación de amistad</li>
-						<li>Ver las publicaciones de mis amigos</li>
-						<li>Borrado de usuarios de la red social por un administrador</li>
+						<li>Borrado de usuarios de la red social</li>
 						<li>Reinicio de la base de datos</li>
 					</ol>
 				</aside>
