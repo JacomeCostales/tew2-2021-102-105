@@ -1,57 +1,65 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<html>
+
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<!DOCTYPE html>
-<html>
-<head>
-
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Opciones Usuario</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 <script type="text/javascript" src="http://localhost:8080/tew2Servicios-2021-102-105/rest-jsapi"></script>
 <script type="text/javascript" src="javascript/functions_login.js"></script>
 
+<head>
+	<title>Opciones Usuario</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 </head>
-<body onload="if(sessionStorage.getItem('token')!=null && sessionStorage.getItem('usuario')!=null){}else{alert('Usted no se ha autenticado');window.location.href='index.html';}">
-<div class="container">
+
+<body
+	onload="if(sessionStorage.getItem('token')!=null && sessionStorage.getItem('usuario')!=null){}else{alert('Usted no se ha autenticado');window.location.href='index.html';}">
+	<div class="container">
 		<!-- 
 	***************************************************
 	* CABECERA DE LA PAGINA ***************************
 	***************************************************
 	-->
 		<div class="page-header">
-			<h1 style="font-weight:900;color:white;">RED SOCIAL</h1></div>
-			<!-- 
+			<h1 style="font-weight: 900; color: white;">RED SOCIAL</h1>
+		</div>
+		<!-- 
 		***************************************************
 		* MENU CON ANIMACIONES **********************************
 		***************************************************
 		-->
-		<div class="row" style="height:15%">
+		<div class="row" style="height: 15%">
 			<ul>
-				<li><a href="enviarInvitacion.html" target="formulario"><i class="fa fa-hand-spock-o" aria-hidden="true"></i></a></li>
-				<li><a href="aceptarInvitacion.html" target="formulario" ><i class="fa fa-handshake-o" aria-hidden="true"></i></a></li>
-				<li><a href="publicar.html" target="formulario"><i class="fa fa-weixin" aria-hidden="true"></i></a></li>
-				<li><a href="mostrarpublicaciones.html" target="formulario" ><i class="fa fa-street-view" aria-hidden="true"></i></a></li>
-				<li><a href="mostrarPublicacionesAmigos.html" target="formulario" ><i class="fa fa-users" aria-hidden="true"></i></a></li>
-				<li><a href="index.html" id ="botonLogout"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+				<li><a href="enviarInvitacion.html" target="formulario"><i
+						class="fa fa-hand-spock-o" aria-hidden="true"></i></a></li>
+				<li><a href="aceptarInvitacion.html" target="formulario"><i
+						class="fa fa-handshake-o" aria-hidden="true"></i></a></li>
+				<li><a href="publicar.html" target="formulario"><i
+						class="fa fa-weixin" aria-hidden="true"></i></a></li>
+				<li><a href="mostrarpublicaciones.html" target="formulario"><i
+						class="fa fa-street-view" aria-hidden="true"></i></a></li>
+				<li><a href="mostrarPublicacionesAmigos.html"
+					target="formulario"><i class="fa fa-users" aria-hidden="true"></i></a></li>
+				<li><a href="index.html" id="botonLogout"><i
+						class="fa fa-sign-out" aria-hidden="true"></i></a></li>
 			</ul>
 		</div>
-		
-		
-			<!-- 
+
+
+		<!-- 
 	***************************************************
 	* SECCION PRINCIPAL DE FORMULARIOS EXTERNOS********
 	***************************************************
 	-->
-	<div class="row" style="height:60%">
-			<div class="col-md-9" style="position:relative;width:100%;height:100%;">
-				<iframe name="formulario" src="" frameBorder="0" style="position:relative;width:100%;height:95%;"></iframe>
+		<div class="row" style="height: 60%">
+			<div class="col-md-9"
+				style="position: relative; width: 100%; height: 100%;">
+				<iframe name="formulario" src="" frameBorder="0"
+					style="position: relative; width: 100%; height: 95%;"></iframe>
 			</div>
 
 
@@ -60,19 +68,22 @@
 	* ELEMENTO LATERAL INFORMATIVO ********************
 	***************************************************
 	-->
-			<div class="col-md-3 bg-info" style="position:relative;width:70%;height:95%;">
+			<div class="col-md-3 bg-info"
+				style="position: relative; width: 70%; height: 95%;">
 				<aside>
 					<header>
 						<h2>Proyecto Red Social</h2>
 					</header>
-					<p>En este proyecto se incorporan las siguientes características:
+					<p>En este proyecto se incorporan las siguientes
+						características:
 					<ol>
 						<li>Autenticación</li>
 						<li>Logout</li>
 						<li>Crear nuevas publicaciones</li>
 						<li>Listar mis publicaciones</li>
 						<li>Enviar invitaciones de amistad a otros usuarios</li>
-						<li>Listado de las invitaciones de amistad recibidas y aceptar una invitación de amistad</li>
+						<li>Listado de las invitaciones de amistad recibidas y
+							aceptar una invitación de amistad</li>
 						<li>Ver las publicaciones de mis amigos</li>
 						<li>Borrado de usuarios de la red social por un administrador</li>
 						<li>Reinicio de la base de datos</li>
@@ -86,7 +97,7 @@
 	* ELEMENTO PIE DE NAVEGACION** ********************
 	***************************************************
 	-->
-	
+
 		<div class="panel panel-default">
 			<div class="panel-footer">
 				<nav>
@@ -95,13 +106,6 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-
-
 
 </body>
 </html>
