@@ -63,12 +63,12 @@ function View()
 	 this.list = function (lista) 
 	 {
 		 $("#tablaUsuarios").html("");
-		 $("#tablaUsuarios").html( "<thead class='thead-green'>" + "<tr>" + "<th>E-mail</th>" + "<th>Nombre</th>" + "<th>Rol</th>" + "<th>Agregar</th>" + "</tr>" + "</thead>" + "<tbody>" + "</tbody>");
+		 $("#tablaUsuarios").html( "<thead class='Tabla'>" + "<tr>" + "<th>E-mail</th>" + "<th>Nombre</th>" + "<th>Rol</th>" + "<th>Agregar</th>" + "</tr>" + "</thead>" + "<tbody>" + "</tbody>");
 		 
 		 for ( var i in lista) 
 		 {
 			 var usuario = lista[i];
-			 $("#tablaUsuarios tbody").append("<tr>"+ "<td>" + usuario.email + "</td>"  + "<td>" + usuario.nombre + "</td>" + "<td>" + usuario.rol + "</td>" + "<td>" + "<input type='button' value='Agregar Amigo' class='botonAgregarAmigo'/>" + "</td>"  + "</tr>");
+			 $("#tablaUsuarios tbody").append("<tr>"+ "<td class='filaTabla'>" + usuario.email + "</td>"  + "<td class='filaTabla'>" + usuario.nombre + "</td>" + "<td class='filaTabla'>" + usuario.rol + "</td>" + "<td class='filaTabla'>" + "<input type='button' value='Agregar Amigo' class='botonAgregarAmigo'/>" + "</td>"  + "</tr>");
 		 }
 	 } 
 };

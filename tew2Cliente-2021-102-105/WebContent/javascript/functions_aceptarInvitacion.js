@@ -74,12 +74,12 @@ function View()
 	 this.list = function (lista) 
 	 {
 		 $("#tablaPeticiones").html("");
-		 $("#tablaPeticiones").html( "<thead>" + "<tr>" + "<th>Nombre</th>" + "<th>Aceptar Amigo</th>" + "</tr>" + "</thead>" + "<tbody>" + "</tbody>");
+		 $("#tablaPeticiones").html( "<thead  class='Tabla'>" + "<tr>" + "<th>Nombre</th>" + "<th>Aceptar Amigo</th>" + "</tr>" + "</thead>" + "<tbody>" + "</tbody>");
 		 
 		 for ( var i in lista) 
 		 {
 			 var usuario = lista[i];
-			 $("#tablaPeticiones tbody").append("<tr>"+ "<td>" + usuario.nombre + "</td>" + "<td>" + "<input type='button' value='Aceptar Amigo' class='botonAceptarAmigo'/>" + "</td>"  + "</tr>");
+			 $("#tablaPeticiones tbody").append("<tr>"+ "<td class='filaTabla'>" + usuario.nombre + "</td>" + "<td class='filaTabla'>" + "<input type='button' value='Aceptar Amigo' class='botonAceptarAmigo'/>" + "</td>"  + "</tr>");
 		 }
 	 } 
 };
