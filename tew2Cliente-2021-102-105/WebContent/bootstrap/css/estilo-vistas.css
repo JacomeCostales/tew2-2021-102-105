@@ -12,15 +12,22 @@ section
 .botonAceptarAmigo
 {
   border-radius: 10px ;
-  background-color: #0080ff;
+  background-color: #03fcab;
   width:95%; 
 }
 
 .botonAgregarAmigo
 {
   border-radius: 10px ;
-  background-color: #0080ff;
+  background-color: #03fcab;
   width:95%; 
+}
+
+.boton
+{
+  border-radius: 10px ;
+  background-color: #03fcab;
+  
 }
 
 .cercano
@@ -47,19 +54,20 @@ section
 .Tabla
 {
   margin-left: 4em;
-  background-color: #0080ff;
+  background-color: #03fcab;
   width:75%;
+  
 }
 
 .filaTabla
 {
-  background-color: lightgrey;
+  background-color: white;
   width:65%; 
 }
 .publicacion 
 {
   border-radius: 10px ;
-  background-color: lightgrey;
+  background-color: #03fcab;
   width:95%; 
 }
 .titulo-publicacion
