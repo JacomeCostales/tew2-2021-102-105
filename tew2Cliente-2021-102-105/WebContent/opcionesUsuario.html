@@ -19,19 +19,11 @@
 <body
 	onload="if(sessionStorage.getItem('token')!=null && sessionStorage.getItem('usuario')!=null){}else{alert('Usted no se ha autenticado');window.location.href='index.html';}">
 	<div class="container">
-		<!-- 
-	***************************************************
-	* CABECERA DE LA PAGINA ***************************
-	***************************************************
-	-->
+	
 		<div class="page-header">
 			<h1 style="font-weight: 900; color: white;"><i class="fa fa-fw fa-users" style="font-size: 2em;"></i> RED SOCIAL</h1>
 		</div>
-		<!-- 
-		***************************************************
-		* MENU CON ANIMACIONES **********************************
-		***************************************************
-		-->
+	
 		<div class="row" style="height: 15%">
 			<ul>
 				<li><a href="enviarInvitacion.html" target="formulario"><i
@@ -50,22 +42,12 @@
 		</div>
 
 
-		<!-- 
-	***************************************************
-	* SECCION PRINCIPAL DE FORMULARIOS EXTERNOS********
-	***************************************************
-	-->
 		<div class="row" style="height: 60%">
 			<div class="col-md-9" style="position: relative; width: 100%; height: 100%;">
-				<div style="border-radius: 30px;overflow: hidden;"><iframe name="formulario" src="" frameBorder="0"style="position: relative; width: 100%; height: 95%;"></iframe></div>
+				<div style="border-radius: 30px;overflow: hidden;"><iframe name="formulario" src="" frameBorder="0" style="position: relative; width: 100%; height: 95%;"></iframe></div>
 			</div>
 
 
-			<!-- 
-	***************************************************
-	* ELEMENTO LATERAL INFORMATIVO ********************
-	***************************************************
-	-->
 			<div class="col-md-3" style="position: relative; width: 70%; height: 95%;background-color:white;border-radius: 30px;padding: 5% 1%;">
 				<aside>
 					<header>
@@ -86,16 +68,11 @@
 			</div>
 		</div>
 
-		<!-- 
-	***************************************************
-	* ELEMENTO PIE DE NAVEGACION** ********************
-	***************************************************
-	-->
-
 		<div class="panel panel-default bordeado">
 			<div class="panel-footer bordeado">
 				<nav>
-					<p><i class="fa fa-info-circle" aria-hidden="true"></i> http://www.uniovi.es/estudios/grados</p>
+					<i class="fa fa-info-circle" aria-hidden="true"></i>
+					<a href="http://localhost:8080/tew2Servicios-2021-102-105/redsocial.json" target="_blank">JSON con DATOS INICIALES</a>
 				</nav>
 			</div>
 		</div>

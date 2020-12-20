@@ -21,7 +21,7 @@ public class UsuariosServicesRsImpl implements UsuariosServicesRs
 		{
 			try 
 			{
-				System.out.println("Estamos en getUsuarios");
+				
 				return new UsuariosListado().getUsuarios();
 			} 
 		

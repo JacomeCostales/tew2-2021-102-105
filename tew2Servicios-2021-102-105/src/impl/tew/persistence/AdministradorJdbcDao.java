@@ -72,7 +72,6 @@ public class AdministradorJdbcDao implements AdministradorDao {
 	@Override
 	public void reiniciarBD() {
 		
-		AlmacenServidor.getAlmacen().getUsuariosLogged().clear();;
 		
 		PreparedStatement ps = null;
 		Connection con = null;

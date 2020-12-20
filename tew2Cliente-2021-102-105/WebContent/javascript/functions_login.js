@@ -76,6 +76,21 @@ function Controller(varmodel)
 				sessionStorage.removeItem('usuario');
 				window.location.href="index.html";
 			})
+			
+			
+		$("#botonReinicio").click(
+				
+			function(event)
+			{
+				var email = sessionStorage.getItem("usuario");
+				var token = sessionStorage.getItem("token");
+				
+				console.log("REINICIAR DB");
+				AdministradorServicesRs.reiniciarBD({N : email, T : token, $contentType : "application/json"});
+				sessionStorage.removeItem("token");
+				sessionStorage.removeItem('usuario');
+				window.location.href="index.html";
+			})
 		}
 			
 };	

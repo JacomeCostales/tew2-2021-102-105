@@ -16,7 +16,6 @@
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 <script type="text/javascript" src="http://localhost:8080/tew2Servicios-2021-102-105/rest-jsapi"></script>
 <script type="text/javascript" src="javascript/functions_login.js"></script>
-
 </head>
 <body onload="if(sessionStorage.getItem('token')!=null && sessionStorage.getItem('usuario')!=null){}else{alert('Usted no se ha autenticado');window.location.href='index.html';}">
 <div class="container">
@@ -35,8 +34,8 @@
 		<div class="row" style="height:15%">
 			<ul class="col" style="margin: 0 25%;">
 				<li style="margin: 0 7%;"><a href="borrarUsuarios.html" target="formulario"><i class="fa fa-ban" aria-hidden="true"></i></a></li>
-				<li style="margin: 0 7%;"><a href="opcionesAdministrador.html"><i class="fa fa-spinner" aria-hidden="true"></i></a></li>
-				<li style="margin: 0 7%;"><a href="index.html" id ="botonLogout"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+				<li style="margin: 0 7%;"><a href="index.html" id="botonReinicio"><i class="fa fa-spinner" aria-hidden="true"></i></a></li>
+				<li style="margin: 0 7%;"><a href="index.html" id="botonLogout"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
 			</ul>
 		</div>
 		
@@ -82,7 +81,8 @@
 		<div class="panel panel-default bordeado">
 			<div class="panel-footer bordeado">
 				<nav>
-					<p><i class="fa fa-info-circle" aria-hidden="true"></i> http://www.uniovi.es/estudios/grados</p>
+					<i class="fa fa-info-circle" aria-hidden="true"></i>
+					<a href="http://localhost:8080/tew2Servicios-2021-102-105/redsocial.json" target="_blank">JSON con DATOS INICIALES</a>
 				</nav>
 			</div>
 		</div>

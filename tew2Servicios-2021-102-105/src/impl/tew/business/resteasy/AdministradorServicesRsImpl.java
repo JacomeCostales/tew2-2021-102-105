@@ -35,6 +35,7 @@ public class AdministradorServicesRsImpl implements AdministradorServicesRs{
 		if(AlmacenServidor.getAlmacen().autentica(N,T))
 		{
 			new AdministradorJdbcDao().reiniciarBD();
+			AlmacenServidor.getAlmacen().getUsuariosLogged().clear();
 		}
 		else
 		{
